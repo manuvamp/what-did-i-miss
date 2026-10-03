@@ -1,73 +1,36 @@
 # Product Feedback
 
-This document records actual feedback on tools, APIs, and SDKs used during development. It is updated as real experience is gained.
+Real notes on every tool touched during this build. Sources: git log, this session's friction-log, and the test/QA output. Nothing invented.
 
-## Fire TV
+## ffmpeg / HLS packaging
 
-### Development Environment
+- **Worked:** scene extraction (`fps=1/3`), scene-change detection (`select='gt(scene,0.3)'`), and HLS packaging (`-c:v libx264 -hls_time 6 -hls_playlist_type vod`) all ran clean. 117 segments + a valid `index.m3u8` from the 175 MB Sintel source.
+- **Hurt:** `drawtext` on the gyan.dev WinGet build is effectively broken — it segfaults without a system fontconfig, and `FONTCONFIG_FILE` didn't help. Only an explicit `fontfile=...` worked. Also, filter args split on `:` so timestamps need `00\:03`-style escaping, which is not obvious from the docs.
+- **Suggestion:** ship a fontconfig fallback on Windows; warn about `:` in `text=` values.
 
-*To be filled after initial setup.*
+## Media3 / ExoPlayer & HLS
 
-### Simulator/Device Workflow
+- **Worked:** Media3 1.2.1's HLS + WebVTT support and `currentPosition` polling are exactly what the spoiler-safety model needs — precise, seek-aware, and the listener API exposes position discontinuities (which power the "forward skip = missed range" detection).
+- **Not yet exercised on hardware:** the Kotlin app is written against Media3 but compiled only after the Android toolchain is installed (see RUNBOOK). Emulator run is Prompt-3/Prompt-5 scope.
 
-*To be filled after first install.*
+## MediaSession
 
-### Remote Navigation
+- Chose **legacy `MediaSessionCompat`** (androidx.media) bridged to ExoPlayer rather than Media3 `MediaSession`, to keep a single-activity v1 simple and still publish play/pause/rew/ff/seek + position for the TV remote/system UI. This is a deliberate trade, documented in code. If advanced session features (custom commands, multi-session) are needed, migrate to `Media3SessionService`.
 
-*To be filled after implementing D-pad navigation.*
+## Fire TV / Android TV emulator
 
-### MediaSession
+- Not yet run (toolchain not installed on this machine). Planned: `tv1080` Android TV AVD, backend reachable at `10.0.2.2:3000`. Emulator is Android TV, not Fire OS — called out plainly in the submission.
 
-*To be filled after MediaSession integration.*
+## Express / TypeScript backend
 
-### Playback
+- **Worked:** Zod request validation, an in-memory recap cache keyed by `contentId:start:end`, and an `express.static` route to serve HLS with correct MIME types (`application/vnd.apple.mpegurl`, `video/mp2t`). `npx tsx` gives a fast dev loop.
+- **Hurt:** a **stale `node` listener on :3000** shadowed fresh code during debugging and masked a real spoiler-leak fix until the old PIDs were killed.
+- **Suggestion:** add a `/__version` start-timestamp and a dev pre-flight that refuses a second listener.
 
-*To be filled after HLS playback testing.*
+## The spoiler-safety model itself
 
-### Lifecycle Requirements
+- Building the story index **by watching the film** (238 extracted frames, 15 contact sheets, 10/10 timestamp spot-checks) was what made the spoiler boundary trustworthy — you can't gate a twist you haven't localized. Found and fixed a genuine Layer-1 leak (scene prose + one clue narrating the twist pre-boundary). This validated the two-layer design: retrieval filtering alone was not enough because coarse scene summaries bypassed per-event gates.
 
-*To be filled after lifecycle testing.*
+## LLM providers (Anthropic / Bedrock)
 
-### Documentation
-
-*To be filled after using Amazon documentation.*
-
-## Media3
-
-### Setup
-
-*To be filled after ExoPlayer integration.*
-
-### HLS
-
-*To be filled after HLS stream testing.*
-
-### Subtitles
-
-*To be filled after WebVTT implementation.*
-
-### Player APIs
-
-*To be filled after PlayerManager implementation.*
-
-### MediaSession
-
-*To be filled after MediaSession testing.*
-
-## AWS
-
-### S3
-
-*To be filled after S3 upload.*
-
-### CloudFront
-
-*To be filled after CloudFront distribution setup.*
-
-### Bedrock
-
-*To be filled after Bedrock integration (if used).*
-
-### MediaConvert
-
-*To be filled after video packaging (if used).*
+- Deterministic provider is the default and the test baseline — it needs no credentials and makes spoiler logic fully regression-testable (29/29). The Anthropic/Bedrock providers sit behind the same interface and were wired but not exercised against live API keys in this pass.

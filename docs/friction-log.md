@@ -29,4 +29,33 @@ This document records real problems encountered during development, with actual 
 **Severity:** Blocker for on-device phases
 **Workaround:** [HUMAN] — enable Developer Options (Settings → My Fire TV → About → tap Build ×7), enable ADB Debugging, `adb connect <tv-ip>:5555`
 
+## 2026-10-04 — Sintel content pipeline + SpoilerGuard tuning (Claude Code session)
+
+**Task:** Build contact-sheet montages with `ffmpeg drawtext` timestamp overlays on Windows
+**Expected:** `drawtext=text='00:03'` inside a `filter_complex_script` renders the burned-in label
+**Actual:** THREE separate tooling failures, each with a distinct root cause:
+1. FFmpeg filter args split on `:` even inside `text='...'` — the `mm:ss` colon must be backslash-escaped (`00\:03`), else "No option name near '00:x=...'".
+2. The gyan.dev WinGet FFmpeg build **segfaults in `drawtext`** because it can't find a fontconfig config (`Fontconfig error: Cannot load default config file`). Supplying `FONTCONFIG_FILE` did not fix it; only switching to an explicit `fontfile='C:/Windows/Fonts/arial.ttf'` bypassed the fontconfig DB and worked.
+3. `vstack` failed with "Padded dimensions cannot be smaller than input dimensions" because the 640px-wide source frames scale to 374px (818px source aspect), so my hardcoded `pad=1280` target was smaller than the real 1496px row. Fixed by forcing every cell to an exact `320x140` box (`scale=...:force_original_aspect_ratio=decrease,pad=320:140:...`).
+**Severity:** Medium (blocking tooling, but diagnosable)
+**Workaround:** Explicit `fontfile` + fixed-dimension cells + `filter_complex_script` files (avoids all shell-quoting issues).
+**Suggested improvement:** A "contact sheet with timestamps" is a common need; a single ffmpeg incantation that worked cross-platform without fontconfig would save real time. Document the `:`-escaping for `drawtext` prominently.
+
+**Task:** Verify Sintel recap is spoiler-safe at the reveal boundary
+**Expected:** At 11:20 (680s), just before the 11:30 reveal boundary, the recap must NOT narrate the twist
+**Actual:** **REAL Layer-1 leak found and fixed.** Two independent causes:
+1. `DeterministicProvider.buildSummary` dumped `currentScene.summary` verbatim, and scene_13's prose (633–690s) narrated the recognition twist — bypassing the per-event `spoilerBoundaryMs` gate. Fixed by building the recap only from time-gated events, never the raw scene prose.
+2. `clue_07` ("The Dragon Recognizes Sintel") had `discoveredAtMs: 624s`, so it passed the clue filter at 680s even though it IS the twist. Fixed by gating its discovery to the actual reveal boundary (690s).
+A MASKING BUG made this hard to see during dev: a **stale backend process** (two node.exe listeners on :3000) kept serving the OLD code after edits, so fixes appeared not to work until both PIDs were force-killed.
+**Severity:** Blocker (if shipped, the recap spoils the film's central twist)
+**Workaround:** Gate scene prose + clue discovery to spoiler boundaries; kill stale node listeners before re-testing.
+**Suggested improvement:** A `GET /__version` health field reporting the server start-timestamp would make stale-process bugs obvious. Consider a `lsof`-style pre-flight in the dev script that refuses to start a second listener on :3000.
+
+**Task:** Surface the early→late "Scales bond" link in prior-context at the fight
+**Expected:** When asking at the dragon fight, the recap connects back to Sintel bonding with baby Scales
+**Actual:** Initially the top prior-context was only recent high-importance events (sword, map) — the semantically-critical Scales bond was buried because "Scales" ≠ "Adult Dragon" as strings and recency dominated ranking.
+**Severity:** Medium (product-quality, not a crash)
+**Workaround:** Expanded `retrievePriorContext` to add characters via the static `relationships` graph (Scales and Adult Dragon both relate to Sintel), and reweighted character-overlap (0.45) above recency (0.05). The link now surfaces without leaking (relationships are static metadata).
+**Suggested improvement:** When a twist links two entities that are "the same character at different times", a single canonical `entityId` spanning both names would be cleaner than string-matching.
+
 (no production entries yet — the Live App has not yet been built or run on hardware)

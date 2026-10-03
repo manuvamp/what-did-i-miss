@@ -1,0 +1,232 @@
+[
+  {
+    "id": "event_001",
+    "timestampMs": 15000,
+    "type": "character_action",
+    "description": "Sintel walks alone through a misty snowscape carrying a glowing staff.",
+    "characters": ["Sintel"],
+    "objects": ["Glowing staff"],
+    "importance": 0.5,
+    "spoilerBoundaryMs": 48000
+  },
+  {
+    "id": "event_002",
+    "timestampMs": 48000,
+    "type": "clue",
+    "description": "Close-up of Sintel's bandaged, bleeding hand.",
+    "characters": ["Sintel"],
+    "objects": ["Bandaged hand"],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 120000
+  },
+  {
+    "id": "event_003",
+    "timestampMs": 78000,
+    "type": "character_action",
+    "description": "Sintel collapses exhausted in the snow during a blizzard.",
+    "characters": ["Sintel"],
+    "objects": [],
+    "importance": 0.65,
+    "spoilerBoundaryMs": 120000
+  },
+  {
+    "id": "event_004",
+    "timestampMs": 123000,
+    "type": "character_action",
+    "description": "The shaman opens his door and takes Sintel in from the cold.",
+    "characters": ["Sintel", "Shaman"],
+    "objects": [],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 141000
+  },
+  {
+    "id": "event_005",
+    "timestampMs": 144000,
+    "type": "clue",
+    "description": "A small red-scaled baby dragon appears under the fireplace and nudges Sintel's hand.",
+    "characters": ["Sintel", "Scales"],
+    "objects": ["Baby dragon"],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 186000
+  },
+  {
+    "id": "event_006",
+    "timestampMs": 168000,
+    "type": "relationship_change",
+    "description": "Sintel smiles and gently pets the baby dragon, Scales.",
+    "characters": ["Sintel", "Scales"],
+    "objects": ["Baby dragon"],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 186000
+  },
+  {
+    "id": "event_007",
+    "timestampMs": 204000,
+    "type": "clue",
+    "description": "The shaman makes a throat-slashing gesture and shows Sintel how to kill with a knife.",
+    "characters": ["Sintel", "Shaman"],
+    "objects": ["Knife"],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 234000
+  },
+  {
+    "id": "event_008",
+    "timestampMs": 240000,
+    "type": "relationship_change",
+    "description": "Scales rests its chin on Sintel's shoulder by the fire, then mouths her bandage curiously.",
+    "characters": ["Sintel", "Scales"],
+    "objects": ["Bandaged hand"],
+    "importance": 0.75,
+    "spoilerBoundaryMs": 282000
+  },
+  {
+    "id": "event_009",
+    "timestampMs": 270000,
+    "type": "clue",
+    "description": "Sintel notices the shaman's hut is full of dragon trophies: a large dragon scale, crystals, a dragon figurine.",
+    "characters": ["Sintel"],
+    "objects": ["Dragon scale", "Crystal shelf", "Dragon figurine"],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 282000
+  },
+  {
+    "id": "event_010",
+    "timestampMs": 288000,
+    "type": "relationship_change",
+    "description": "Sintel and Scales play-wrestle joyfully; the lizard licks her face.",
+    "characters": ["Sintel", "Scales"],
+    "objects": ["Baby dragon"],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 330000
+  },
+  {
+    "id": "event_011",
+    "timestampMs": 345000,
+    "type": "object_change",
+    "description": "The shaman forges and quenches a blade, then presents the finished sword to Sintel.",
+    "characters": ["Sintel", "Shaman"],
+    "objects": ["Sword"],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 378000
+  },
+  {
+    "id": "event_012",
+    "timestampMs": 363000,
+    "type": "clue",
+    "description": "The shaman shows Sintel a map and points to a destination marked 'Dragon's' territory.",
+    "characters": ["Sintel", "Shaman"],
+    "objects": ["Map"],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 378000
+  },
+  {
+    "id": "event_013",
+    "timestampMs": 396000,
+    "type": "character_action",
+    "description": "Sintel holds Scales on her lap, torn, then steels herself and leaves the hut with the map.",
+    "characters": ["Sintel", "Scales"],
+    "objects": ["Map"],
+    "importance": 0.75,
+    "spoilerBoundaryMs": 423000
+  },
+  {
+    "id": "event_014",
+    "timestampMs": 450000,
+    "type": "character_action",
+    "description": "Sintel treks through harsh mountains, climbing rocks and checking the map.",
+    "characters": ["Sintel"],
+    "objects": ["Map"],
+    "importance": 0.55,
+    "spoilerBoundaryMs": 501000
+  },
+  {
+    "id": "event_015",
+    "timestampMs": 495000,
+    "type": "location_change",
+    "description": "Sintel finds a vast cave and climbs down into the dark.",
+    "characters": ["Sintel"],
+    "objects": [],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 501000
+  },
+  {
+    "id": "event_016",
+    "timestampMs": 522000,
+    "type": "clue",
+    "description": "Inside the cave a shadow-puppet vision of a baby dragon appears on the wall.",
+    "characters": ["Sintel"],
+    "objects": ["Shadow-puppet vision"],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 690000
+  },
+  {
+    "id": "event_017",
+    "timestampMs": 555000,
+    "type": "clue",
+    "description": "A Persian-style illustrated vision tells a story of a ship and a knight fighting a dragon.",
+    "characters": ["Sintel"],
+    "objects": ["Illustrated scroll vision"],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 633000
+  },
+  {
+    "id": "event_018",
+    "timestampMs": 588000,
+    "type": "reveal",
+    "description": "The adult dragon reveals itself in the cave — larger and older, with big eyes and horns.",
+    "characters": ["Sintel", "Adult Dragon"],
+    "objects": [],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 633000
+  },
+  {
+    "id": "event_019",
+    "timestampMs": 603000,
+    "type": "character_action",
+    "description": "Sintel battles the dragon, striking its scaled hide with her glowing blade.",
+    "characters": ["Sintel", "Adult Dragon"],
+    "objects": ["Glowing sword"],
+    "importance": 0.9,
+    "spoilerBoundaryMs": 690000
+  },
+  {
+    "id": "event_020",
+    "timestampMs": 624000,
+    "type": "reveal",
+    "description": "The dragon catches her blade in its jaws, stops, and looks at Sintel with recognition.",
+    "characters": ["Sintel", "Adult Dragon"],
+    "objects": ["Glowing sword"],
+    "importance": 0.95,
+    "spoilerBoundaryMs": 690000
+  },
+  {
+    "id": "event_021",
+    "timestampMs": 640000,
+    "type": "reveal",
+    "description": "Sintel realizes the dragon is Scales grown up; her face fills with horror.",
+    "characters": ["Sintel", "Adult Dragon"],
+    "objects": [],
+    "importance": 1.0,
+    "spoilerBoundaryMs": 690000
+  },
+  {
+    "id": "event_022",
+    "timestampMs": 654000,
+    "type": "character_action",
+    "description": "Sintel cradles the dying dragon's head as it lies still.",
+    "characters": ["Sintel", "Adult Dragon"],
+    "objects": [],
+    "importance": 0.9,
+    "spoilerBoundaryMs": 690000
+  },
+  {
+    "id": "event_023",
+    "timestampMs": 672000,
+    "type": "character_action",
+    "description": "Sintel sobs over Scales' body, heartbroken, as the scene fades.",
+    "characters": ["Sintel", "Adult Dragon"],
+    "objects": [],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 690000
+  }
+]

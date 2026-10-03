@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Sintel",
+    "firstAppearanceMs": 12000,
+    "lastAppearanceMs": 690000,
+    "relationships": ["Scales", "Shaman", "Adult Dragon"],
+    "knownFacts": [
+      { "knownAtMs": 12000, "fact": "Sintel is traveling alone through the snow" },
+      { "knownAtMs": 48000, "fact": "Sintel's hand is bandaged and bleeding" },
+      { "knownAtMs": 123000, "fact": "Sintel is rescued by the shaman" },
+      { "knownAtMs": 168000, "fact": "Sintel bonds with the baby dragon Scales" },
+      { "knownAtMs": 204000, "fact": "Sintel is taught to kill by the shaman" },
+      { "knownAtMs": 270000, "fact": "Sintel sees the shaman's dragon trophies" },
+      { "knownAtMs": 345000, "fact": "Sintel receives a forged sword" },
+      { "knownAtMs": 363000, "fact": "Sintel is given a map to the dragon's lair" },
+      { "knownAtMs": 396000, "fact": "Sintel leaves Scales behind to hunt the dragon" },
+      { "knownAtMs": 495000, "fact": "Sintel enters the dragon's cave" },
+      { "knownAtMs": 588000, "fact": "Sintel faces the adult dragon" },
+      { "knownAtMs": 640000, "fact": "Sintel realizes the dragon is Scales" },
+      { "knownAtMs": 654000, "fact": "Sintel cradles the dying Scales" }
+    ],
+    "currentGoal": "Find and kill the dragon on the map",
+    "currentLocation": "Dragon's cave"
+  },
+  {
+    "name": "Scales",
+    "firstAppearanceMs": 144000,
+    "lastAppearanceMs": 690000,
+    "relationships": ["Sintel", "Shaman"],
+    "knownFacts": [
+      { "knownAtMs": 144000, "fact": "Scales is a baby dragon living in the shaman's hut" },
+      { "knownAtMs": 168000, "fact": "Scales trusts and bonds with Sintel" },
+      { "knownAtMs": 240000, "fact": "Scales comforts Sintel by the fire" },
+      { "knownAtMs": 288000, "fact": "Scales plays with Sintel" },
+      { "knownAtMs": 396000, "fact": "Scales is left behind when Sintel departs" }
+    ],
+    "currentGoal": "Stay near Sintel",
+    "currentLocation": "Shaman's hut"
+  },
+  {
+    "name": "Shaman",
+    "firstAppearanceMs": 123000,
+    "lastAppearanceMs": 378000,
+    "relationships": ["Sintel", "Scales"],
+    "knownFacts": [
+      { "knownAtMs": 123000, "fact": "The shaman rescues Sintel from the snow" },
+      { "knownAtMs": 204000, "fact": "The shaman teaches Sintel to kill" },
+      { "knownAtMs": 270000, "fact": "The shaman collects dragon trophies" },
+      { "knownAtMs": 345000, "fact": "The shaman forges a sword for Sintel" },
+      { "knownAtMs": 363000, "fact": "The shaman sends Sintel to kill a dragon" }
+    ],
+    "currentGoal": "Send Sintel to kill the dragon",
+    "currentLocation": "Shaman's hut"
+  },
+  {
+    "name": "Adult Dragon",
+    "firstAppearanceMs": 588000,
+    "lastAppearanceMs": 690000,
+    "relationships": ["Sintel"],
+    "knownFacts": [
+      { "knownAtMs": 588000, "fact": "The adult dragon lives in the cave" },
+      { "knownAtMs": 603000, "fact": "The adult dragon fights Sintel" },
+      { "knownAtMs": 624000, "fact": "The adult dragon recognizes Sintel" },
+      { "knownAtMs": 640000, "fact": "The adult dragon is Scales grown up" },
+      { "knownAtMs": 654000, "fact": "The adult dragon dies in Sintel's arms" }
+    ],
+    "currentGoal": "Defend its lair",
+    "currentLocation": "Dragon's cave"
+  }
+]

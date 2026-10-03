@@ -1,0 +1,54 @@
+[
+  {
+    "id": "object_staff",
+    "name": "Glowing staff",
+    "firstSeenMs": 12000,
+    "stateChanges": [
+      { "timestampMs": 12000, "description": "Sintel carries a glowing staff through the snow" }
+    ]
+  },
+  {
+    "id": "object_bandage",
+    "name": "Bandaged hand",
+    "firstSeenMs": 48000,
+    "stateChanges": [
+      { "timestampMs": 48000, "description": "Sintel's hand is bandaged and bleeding" },
+      { "timestampMs": 240000, "description": "Scales mouths Sintel's bandaged hand curiously" }
+    ]
+  },
+  {
+    "id": "object_knife",
+    "name": "Knife",
+    "firstSeenMs": 204000,
+    "stateChanges": [
+      { "timestampMs": 204000, "description": "The shaman demonstrates killing with a knife" }
+    ]
+  },
+  {
+    "id": "object_sword",
+    "name": "Sword",
+    "firstSeenMs": 345000,
+    "stateChanges": [
+      { "timestampMs": 345000, "description": "The shaman forges and gives Sintel a sword" },
+      { "timestampMs": 603000, "description": "Sintel strikes the dragon with the sword" },
+      { "timestampMs": 624000, "description": "The dragon catches the sword in its jaws" }
+    ]
+  },
+  {
+    "id": "object_map",
+    "name": "Map",
+    "firstSeenMs": 363000,
+    "stateChanges": [
+      { "timestampMs": 363000, "description": "The shaman shows Sintel a map to the dragon's lair" },
+      { "timestampMs": 450000, "description": "Sintel consults the map while crossing the mountains" }
+    ]
+  },
+  {
+    "id": "object_scale",
+    "name": "Dragon scale",
+    "firstSeenMs": 270000,
+    "stateChanges": [
+      { "timestampMs": 270000, "description": "A large dragon scale sits among the shaman's trophies" }
+    ]
+  }
+]

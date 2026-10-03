@@ -1,0 +1,68 @@
+{
+  "description": "Timestamped story states for Sintel. Each state reflects only what is knowable at that time.",
+  "states": [
+    {
+      "atMs": 48000,
+      "currentCharacters": ["Sintel"],
+      "knownFacts": ["Sintel is traveling alone through the snow", "Her hand is bandaged and bleeding"],
+      "discoveredClues": ["clue_01"],
+      "unresolvedQuestions": ["Where is she going?", "How was she hurt?"],
+      "importantObjects": ["Glowing staff", "Bandaged hand"],
+      "currentLocation": "Snow plains"
+    },
+    {
+      "atMs": 186000,
+      "currentCharacters": ["Sintel", "Scales", "Shaman"],
+      "knownFacts": ["The shaman rescued Sintel", "A baby dragon Scales lives in the hut", "Sintel and Scales are bonding"],
+      "discoveredClues": ["clue_01", "clue_02"],
+      "unresolvedQuestions": ["Who is the old man?", "Why is a dragon here?"],
+      "importantObjects": ["Baby dragon"],
+      "currentLocation": "Shaman's hut"
+    },
+    {
+      "atMs": 282000,
+      "currentCharacters": ["Sintel", "Scales", "Shaman"],
+      "knownFacts": ["The shaman teaches Sintel to kill", "The shaman collects dragon trophies", "Scales trusts Sintel"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_05"],
+      "unresolvedQuestions": ["What does he want her to kill?", "Will she go through with it?"],
+      "importantObjects": ["Knife", "Dragon scale"],
+      "currentLocation": "Shaman's hut"
+    },
+    {
+      "atMs": 378000,
+      "currentCharacters": ["Sintel", "Shaman"],
+      "knownFacts": ["The shaman gave Sintel a forged sword", "The shaman showed Sintel a map to the dragon"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05"],
+      "unresolvedQuestions": ["Where does the map lead?"],
+      "importantObjects": ["Sword", "Map"],
+      "currentLocation": "Shaman's hut"
+    },
+    {
+      "atMs": 501000,
+      "currentCharacters": ["Sintel"],
+      "knownFacts": ["Sintel crossed the mountains alone", "Sintel found and entered the dragon's cave"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05"],
+      "unresolvedQuestions": ["What waits inside the cave?"],
+      "importantObjects": ["Map"],
+      "currentLocation": "Dragon's cave"
+    },
+    {
+      "atMs": 633000,
+      "currentCharacters": ["Sintel", "Adult Dragon"],
+      "knownFacts": ["A baby-dragon vision appears in the cave", "The dragon's story is shown in a vision", "The adult dragon has revealed itself"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05", "clue_06"],
+      "unresolvedQuestions": ["Will Sintel fight it?"],
+      "importantObjects": ["Glowing sword"],
+      "currentLocation": "Dragon's cave"
+    },
+    {
+      "atMs": 690000,
+      "currentCharacters": ["Sintel", "Adult Dragon"],
+      "knownFacts": ["Sintel fought the dragon", "The dragon recognized Sintel", "The dragon is Scales grown up", "Sintel cradled the dying Scales"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05", "clue_06", "clue_07"],
+      "unresolvedQuestions": [],
+      "importantObjects": ["Glowing sword"],
+      "currentLocation": "Dragon's cave"
+    }
+  ]
+}

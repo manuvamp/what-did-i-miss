@@ -2,6 +2,11 @@
 
 A Fire TV AI contextual viewing assistant.
 
+## Credits
+
+Demo film: **Sintel** (c) Blender Foundation | durian.blender.org, licensed [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+This project is **not endorsed by or affiliated with Blender**. The story index for Sintel (scenes, events, clues) was produced by the project team from the film and is provided for demonstration.
+
 ## Problem
 
 People lose track of movies and shows. They check their phone, get interrupted, or simply forget what happened. When they return, they are lost.

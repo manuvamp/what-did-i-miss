@@ -1,0 +1,11 @@
+## This file must *not* be checked into Version Control Systems,
+# as it contains information specific to your local configuration.
+#
+# Copy this file to "local.properties" and set sdk.dir for your machine.
+# Android Studio usually generates this automatically on first open.
+
+# Windows (default Android Studio location):
+sdk.dir=C:\\Users\\cocat\\AppData\\Local\\Android\\Sdk
+
+# If you installed the SDK elsewhere, replace the path above, e.g.:
+# sdk.dir=D:\\Android\\Sdk

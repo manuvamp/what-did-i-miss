@@ -20,7 +20,7 @@ android {
         buildConfigField(
             "String",
             "STREAM_URL",
-            "\"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8\""
+            "\"http://10.0.2.2:3000/hls/sintel/index.m3u8\""
         )
     }
 

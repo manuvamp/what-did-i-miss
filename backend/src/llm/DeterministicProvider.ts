@@ -66,8 +66,16 @@ export class DeterministicProvider implements AIProvider {
   private buildSummary(context: StructuredContext): string {
     const parts: string[] = [];
 
-    if (context.currentScene) {
-      parts.push(`In ${context.currentScene.title}, ${this.lowercaseFirst(context.currentScene.summary)}`);
+    // Do NOT dump currentScene.summary verbatim: a scene can span a reveal
+    // boundary, and its prose summary would narrate gated future beats.
+    // Build the recap only from time-gated events (already filtered by the
+    // retrieval layer's spoilerBoundaryMs), naming the scene for context.
+    const gatedEvents = context.events
+      .filter(e => e.importance >= 0.5)
+      .sort((a, b) => a.timestampMs - b.timestampMs);
+
+    if (context.currentScene && gatedEvents.length > 0) {
+      parts.push(`In ${context.currentScene.title}:`);
     }
 
     const topEvents = context.events

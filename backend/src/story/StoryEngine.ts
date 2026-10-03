@@ -181,7 +181,15 @@ export class StoryEngine {
     if (!currentScene) return [];
     const windowEventIds = new Set(windowEvents.map(e => e.id));
 
+    // Expand the scene's characters through the static relationship graph so
+    // that e.g. the fight with the "Adult Dragon" can link back to earlier
+    // scenes featuring "Scales" (both relate to Sintel). Relationships are
+    // static metadata, not future events, so this does not leak spoilers.
     const sceneChars = new Set(currentScene.characters);
+    for (const name of [...sceneChars]) {
+      const ch = idx.characters.find(c => c.name === name);
+      if (ch) ch.relationships.forEach(r => sceneChars.add(r));
+    }
     const sceneObjects = new Set(currentScene.importantObjects);
 
     const ranked = idx.events
@@ -191,14 +199,17 @@ export class StoryEngine {
       .map(e => {
         const charOverlap = e.characters.filter(c => sceneChars.has(c)).length;
         const objOverlap = e.objects.filter(o => sceneObjects.has(o)).length;
+        // Character/object relevance dominates; recency is a weak tiebreak so
+        // that the semantically important early link (e.g. the Scales bond)
+        // is not buried by merely-recent events.
         const score =
-          charOverlap * 0.35 + objOverlap * 0.3 + e.importance * 0.25 +
-          recencyScore(e.timestampMs, currentScene.startMs) * 0.1;
+          charOverlap * 0.45 + objOverlap * 0.3 + e.importance * 0.2 +
+          recencyScore(e.timestampMs, currentScene.startMs) * 0.05;
         return { e, score };
       })
       .filter(r => r.score > 0.4)
       .sort((a, b) => b.score - a.score)
-      .slice(0, 3)
+      .slice(0, 4)
       .map(r => `In ${sceneTitleFor(idx, r.e.id, r.e.timestampMs)}, ${lowerFirst(r.e.description)}`);
 
     return ranked;

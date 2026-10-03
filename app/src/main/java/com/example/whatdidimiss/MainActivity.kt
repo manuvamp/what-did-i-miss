@@ -30,15 +30,15 @@ class MainActivity : AppCompatActivity() {
     private var mediaSessionManager: MediaSessionManager? = null
     private var subtitleManager: SubtitleManager? = null
 
-    private val contentId = "last_signal_001"
-    private val contentTitle = "The Last Signal"
+    private val contentId = "sintel_001"
+    private val contentTitle = "Sintel"
 
     // Backend URL — 10.0.2.2 reaches the host from an emulator/simulator;
     // use the LAN IP of the dev machine for a physical Fire TV.
     private val backendBaseUrl = BuildConfig.BACKEND_URL
 
-    // HLS stream — bundled demo or CloudFront URL. Default: public test HLS
-    // until "The Last Signal" is packaged (scripts/package_video.sh).
+    // HLS stream — Sintel served by the backend at /hls/sintel/index.m3u8
+    // (see Prompt 4). Falls back to the public bipbop test stream if unset.
     private val hlsUrl = BuildConfig.STREAM_URL
 
     override fun onCreate(savedInstanceState: Bundle?) {

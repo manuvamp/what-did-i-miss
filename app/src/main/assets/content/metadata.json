@@ -1,17 +1,13 @@
 {
-  "contentId": "last_signal_001",
-  "title": "The Last Signal",
+  "contentId": "sintel_001",
+  "title": "Sintel",
   "type": "movie",
-  "durationMs": 1080000,
+  "durationMs": 712958,
   "language": "en",
-  "description": "A mystery thriller about a woman who receives an anonymous message and follows a man into a basement, discovering a photograph that connects to her past.",
-  "genre": ["mystery", "thriller"],
-  "subtitleTracks": [
-    {
-      "language": "en",
-      "uri": "subtitles/last_signal.vtt"
-    }
-  ],
-  "frameIntervalMs": 12000,
-  "sceneCount": 10
+  "description": "Sintel (c) Blender Foundation | durian.blender.org, CC BY 3.0. A warrior searches for the baby dragon Scales she once rescued, only to face it grown and changed in the final act.",
+  "genre": ["fantasy", "adventure", "drama"],
+  "subtitleTracks": [],
+  "frameIntervalMs": 3000,
+  "sceneCount": 12,
+  "notes": "Video has no audio stream. Story derived visually from extracted frames (1 frame / 3s, 238 frames)."
 }

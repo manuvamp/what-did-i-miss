@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import { recapRouter } from './api/recap';
 import { questionRouter } from './api/question';
 import { contentRouter } from './api/content';
@@ -9,6 +10,17 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Serve packaged HLS so the emulator can reach the demo film at
+// http://10.0.2.2:3000/hls/sintel/index.m3u8
+const hlsDir = path.resolve(__dirname, '..', '..', 'dist', 'hls');
+app.use('/hls', express.static(hlsDir, {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.m3u8')) res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
+    if (filePath.endsWith('.ts')) res.setHeader('Content-Type', 'video/mp2t');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
+}));
 
 // Request logging with latency (no raw dialogue)
 app.use((req, res, next) => {

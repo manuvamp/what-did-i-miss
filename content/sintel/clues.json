@@ -57,7 +57,7 @@
     "id": "clue_07",
     "title": "The Dragon Recognizes Sintel",
     "description": "Mid-fight, the adult dragon stops, catches her blade, and looks at Sintel with unmistakable recognition.",
-    "discoveredAtMs": 624000,
+    "discoveredAtMs": 690000,
     "relatedCharacters": ["Sintel", "Adult Dragon"],
     "relatedObjects": ["Glowing sword"],
     "status": "resolved"

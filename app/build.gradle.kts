@@ -13,6 +13,15 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        // Emulator/simulator host. For a physical Fire TV on the same LAN,
+        // change to the dev machine's IP, e.g. "http://192.168.1.50:3000"
+        buildConfigField("String", "BACKEND_URL", "\"http://10.0.2.2:3000\"")
+        buildConfigField(
+            "String",
+            "STREAM_URL",
+            "\"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8\""
+        )
     }
 
     buildTypes {
@@ -32,16 +41,10 @@ android {
         viewBinding = true
         buildConfig = true
     }
-
-    defaultConfig {
-        // Emulator/simulator host. For a physical Fire TV on the same LAN,
-        // change to the dev machine's IP, e.g. "http://192.168.1.50:3000"
-        buildConfigField("String", "BACKEND_URL", "\"http://10.0.2.2:3000\"")
-        buildConfigField(
-            "String",
-            "STREAM_URL",
-            "\"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8\""
-        )
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 

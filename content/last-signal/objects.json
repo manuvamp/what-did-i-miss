@@ -1,0 +1,46 @@
+[
+  {
+    "id": "object_phone",
+    "name": "Phone",
+    "firstSeenMs": 5000,
+    "stateChanges": [
+      { "timestampMs": 5000, "description": "Sarah's phone received the anonymous message" }
+    ]
+  },
+  {
+    "id": "object_photograph",
+    "name": "Photograph",
+    "firstSeenMs": 36000,
+    "stateChanges": [
+      { "timestampMs": 36000, "description": "Michael recognizes a photograph of the building" },
+      { "timestampMs": 302000, "description": "Sarah finds a photograph hidden behind the basement cabinet" },
+      { "timestampMs": 308000, "description": "Photograph shows the same building Michael denied knowing" }
+    ]
+  },
+  {
+    "id": "object_key",
+    "name": "Key",
+    "firstSeenMs": 62000,
+    "stateChanges": [
+      { "timestampMs": 62000, "description": "Key is discovered missing from Sarah's apartment" }
+    ]
+  },
+  {
+    "id": "object_cabinet",
+    "name": "Cabinet",
+    "firstSeenMs": 242000,
+    "stateChanges": [
+      { "timestampMs": 242000, "description": "Michael directs Sarah to open the cabinet" },
+      { "timestampMs": 248000, "description": "Cabinet appears empty" },
+      { "timestampMs": 254000, "description": "Michael reveals something is hidden behind the cabinet" }
+    ]
+  },
+  {
+    "id": "object_radio",
+    "name": "Radio",
+    "firstSeenMs": 482000,
+    "stateChanges": [
+      { "timestampMs": 482000, "description": "Sarah notices the radio signal is still active" }
+    ]
+  }
+]

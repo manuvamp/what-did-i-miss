@@ -1,0 +1,31 @@
+# Node
+node_modules/
+dist/
+
+# Env / secrets
+.env
+.env.local
+
+# Android
+local.properties
+*.apk
+*.aab
+*.keystore
+app/build/
+build/
+.gradle/
+
+# Video pipeline output
+dist/hls/
+
+# Extracted frame imagery (large, regenerable)
+content/last-signal/frames/*.jpg
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store

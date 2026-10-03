@@ -1,0 +1,72 @@
+{
+  "description": "Timestamped story states. Each state reflects only what is knowable at that time.",
+  "states": [
+    {
+      "atMs": 29000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": ["Sarah received an anonymous message", "Michael denies sending it"],
+      "discoveredClues": ["clue_01"],
+      "unresolvedQuestions": ["Who sent the message?"],
+      "importantObjects": ["Phone"],
+      "currentLocation": "Parking lot"
+    },
+    {
+      "atMs": 59000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": ["Michael claims never to have visited the building", "Michael recognized a photograph of it"],
+      "discoveredClues": ["clue_01", "clue_02"],
+      "unresolvedQuestions": ["Who sent the message?", "Why did Michael lie about the building?"],
+      "importantObjects": ["Phone", "Photograph"],
+      "currentLocation": "Parking lot"
+    },
+    {
+      "atMs": 119000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": ["A key is missing from Sarah's apartment"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03"],
+      "unresolvedQuestions": ["Who sent the message?", "Why did Michael lie about the building?", "Who took the key?"],
+      "importantObjects": ["Phone", "Key"],
+      "currentLocation": "Apartment"
+    },
+    {
+      "atMs": 239000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": ["Michael knows the basement layout"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03"],
+      "unresolvedQuestions": ["What is in the basement?", "Why does Michael know the basement so well?"],
+      "importantObjects": ["Flashlight", "Cabinet"],
+      "currentLocation": "Basement"
+    },
+    {
+      "atMs": 359000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": [
+        "A photograph was hidden behind the cabinet",
+        "The photograph shows the building Michael denied knowing",
+        "Sarah's father worked at that building"
+      ],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05"],
+      "unresolvedQuestions": ["What is Michael's connection to Sarah's father?"],
+      "importantObjects": ["Photograph", "Cabinet"],
+      "currentLocation": "Basement"
+    },
+    {
+      "atMs": 479000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": ["Michael knew Sarah's father", "Michael sent the anonymous message and brought Sarah here intentionally"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05"],
+      "unresolvedQuestions": ["What does Michael want from Sarah?"],
+      "importantObjects": ["Photograph", "Phone"],
+      "currentLocation": "Basement"
+    },
+    {
+      "atMs": 540000,
+      "currentCharacters": ["Sarah", "Michael"],
+      "knownFacts": ["The radio signal is still active", "Someone else may be in the building"],
+      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05", "clue_06"],
+      "unresolvedQuestions": ["Who else is in the building?", "What is the signal?"],
+      "importantObjects": ["Photograph", "Radio"],
+      "currentLocation": "Basement"
+    }
+  ]
+}

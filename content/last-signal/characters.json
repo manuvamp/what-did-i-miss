@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Sarah",
+    "firstAppearanceMs": 5000,
+    "lastAppearanceMs": 490000,
+    "relationships": ["Michael"],
+    "knownFacts": [
+      { "knownAtMs": 9000, "fact": "Sarah received an anonymous message" },
+      { "knownAtMs": 62000, "fact": "Sarah knows a key is missing" },
+      { "knownAtMs": 314000, "fact": "Sarah knows her father worked at the building" }
+    ],
+    "currentGoal": "Identify who sent the anonymous message",
+    "currentLocation": "Basement"
+  },
+  {
+    "name": "Michael",
+    "firstAppearanceMs": 5000,
+    "lastAppearanceMs": 490000,
+    "relationships": ["Sarah"],
+    "knownFacts": [
+      { "knownAtMs": 16000, "fact": "Michael denies sending the message" },
+      { "knownAtMs": 32000, "fact": "Michael claims never to have visited the building" },
+      { "knownAtMs": 422000, "fact": "Michael knew Sarah's father" }
+    ],
+    "currentGoal": "Keep Sarah safe while revealing the truth",
+    "currentLocation": "Basement"
+  }
+]

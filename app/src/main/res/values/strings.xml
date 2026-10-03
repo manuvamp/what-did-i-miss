@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">What Did I Miss?</string>
+    <string name="what_did_i_miss">WHAT DID I MISS?</string>
+    <string name="continue_watching">Continue Watching</string>
+    <string name="watch_missed_part">Watch Missed Part</string>
+    <string name="analyzing">Analyzing what you missed...</string>
+    <string name="you_missed">You missed %1$s</string>
+    <string name="important">IMPORTANT</string>
+    <string name="title_activity_main">What Did I Miss?</string>
+</resources>

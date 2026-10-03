@@ -1,0 +1,58 @@
+[
+  {
+    "id": "frame_001",
+    "timestampMs": 10000,
+    "sceneId": "scene_01",
+    "path": "frames/scene_01/frame_001.jpg",
+    "description": "Sarah and Michael meet in parking lot"
+  },
+  {
+    "id": "frame_002",
+    "timestampMs": 35000,
+    "sceneId": "scene_02",
+    "path": "frames/scene_02/frame_001.jpg",
+    "description": "Michael looks at photograph"
+  },
+  {
+    "id": "frame_003",
+    "timestampMs": 65000,
+    "sceneId": "scene_03",
+    "path": "frames/scene_03/frame_001.jpg",
+    "description": "Sarah discovers empty key hook"
+  },
+  {
+    "id": "frame_004",
+    "timestampMs": 190000,
+    "sceneId": "scene_05",
+    "path": "frames/scene_05/frame_001.jpg",
+    "description": "Michael and Sarah descend into dark basement"
+  },
+  {
+    "id": "frame_005",
+    "timestampMs": 245000,
+    "sceneId": "scene_06",
+    "path": "frames/scene_06/frame_001.jpg",
+    "description": "Sarah opens cabinet"
+  },
+  {
+    "id": "frame_006",
+    "timestampMs": 305000,
+    "sceneId": "scene_07",
+    "path": "frames/scene_07/frame_001.jpg",
+    "description": "Sarah discovers photograph behind cabinet"
+  },
+  {
+    "id": "frame_007",
+    "timestampMs": 310000,
+    "sceneId": "scene_07",
+    "path": "frames/scene_07/frame_002.jpg",
+    "description": "Close-up of photograph showing old building"
+  },
+  {
+    "id": "frame_008",
+    "timestampMs": 485000,
+    "sceneId": "scene_10",
+    "path": "frames/scene_10/frame_001.jpg",
+    "description": "Sarah notices active radio signal"
+  }
+]

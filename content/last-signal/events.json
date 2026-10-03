@@ -1,0 +1,172 @@
+[
+  {
+    "id": "event_001",
+    "timestampMs": 6000,
+    "type": "dialogue",
+    "description": "Michael tells Sarah she shouldn't have come.",
+    "characters": ["Michael", "Sarah"],
+    "objects": [],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 29000
+  },
+  {
+    "id": "event_002",
+    "timestampMs": 16000,
+    "type": "dialogue",
+    "description": "Michael denies sending the anonymous message.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Phone"],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 29000
+  },
+  {
+    "id": "event_003",
+    "timestampMs": 32000,
+    "type": "dialogue",
+    "description": "Michael claims he has never been to the building.",
+    "characters": ["Michael"],
+    "objects": [],
+    "importance": 0.75,
+    "spoilerBoundaryMs": 59000
+  },
+  {
+    "id": "event_004",
+    "timestampMs": 44000,
+    "type": "dialogue",
+    "description": "Sarah challenges Michael about recognizing the photograph.",
+    "characters": ["Sarah", "Michael"],
+    "objects": ["Photograph"],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 59000
+  },
+  {
+    "id": "event_005",
+    "timestampMs": 62000,
+    "type": "character_action",
+    "description": "Sarah discovers the key is missing.",
+    "characters": ["Sarah"],
+    "objects": ["Key"],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 119000
+  },
+  {
+    "id": "event_006",
+    "timestampMs": 122000,
+    "type": "character_action",
+    "description": "Michael decides to go to the basement.",
+    "characters": ["Michael"],
+    "objects": [],
+    "importance": 0.65,
+    "spoilerBoundaryMs": 179000
+  },
+  {
+    "id": "event_007",
+    "timestampMs": 182000,
+    "type": "location_change",
+    "description": "Michael and Sarah enter the basement together.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Flashlight"],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 239000
+  },
+  {
+    "id": "event_008",
+    "timestampMs": 242000,
+    "type": "character_action",
+    "description": "Michael directs Sarah to open the cabinet.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Cabinet"],
+    "importance": 0.75,
+    "spoilerBoundaryMs": 299000
+  },
+  {
+    "id": "event_009",
+    "timestampMs": 248000,
+    "type": "object_change",
+    "description": "The cabinet appears empty.",
+    "characters": ["Sarah"],
+    "objects": ["Cabinet"],
+    "importance": 0.5,
+    "spoilerBoundaryMs": 299000
+  },
+  {
+    "id": "event_010",
+    "timestampMs": 254000,
+    "type": "character_action",
+    "description": "Michael tells Sarah to look behind the cabinet.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Cabinet"],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 299000
+  },
+  {
+    "id": "event_011",
+    "timestampMs": 302000,
+    "type": "clue",
+    "description": "Sarah discovers a photograph hidden behind the cabinet.",
+    "characters": ["Sarah"],
+    "objects": ["Photograph"],
+    "importance": 0.95,
+    "spoilerBoundaryMs": 359000
+  },
+  {
+    "id": "event_012",
+    "timestampMs": 308000,
+    "type": "clue",
+    "description": "Sarah recognizes the building in the photograph.",
+    "characters": ["Sarah"],
+    "objects": ["Photograph"],
+    "importance": 0.9,
+    "spoilerBoundaryMs": 359000
+  },
+  {
+    "id": "event_013",
+    "timestampMs": 314000,
+    "type": "clue",
+    "description": "Sarah connects the building to her father's past.",
+    "characters": ["Sarah"],
+    "objects": ["Photograph"],
+    "importance": 0.92,
+    "spoilerBoundaryMs": 359000
+  },
+  {
+    "id": "event_014",
+    "timestampMs": 422000,
+    "type": "reveal",
+    "description": "Michael reveals he knew Sarah's father.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Photograph"],
+    "importance": 0.95,
+    "spoilerBoundaryMs": 479000
+  },
+  {
+    "id": "event_015",
+    "timestampMs": 428000,
+    "type": "reveal",
+    "description": "Michael admits he brought Sarah here intentionally.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Phone"],
+    "importance": 0.9,
+    "spoilerBoundaryMs": 479000
+  },
+  {
+    "id": "event_016",
+    "timestampMs": 482000,
+    "type": "clue",
+    "description": "Sarah notices the signal is still active.",
+    "characters": ["Sarah"],
+    "objects": ["Radio"],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 540000
+  },
+  {
+    "id": "event_017",
+    "timestampMs": 488000,
+    "type": "reveal",
+    "description": "Michael realizes they are not alone in the building.",
+    "characters": ["Michael", "Sarah"],
+    "objects": ["Radio"],
+    "importance": 0.9,
+    "spoilerBoundaryMs": 540000
+  }
+]

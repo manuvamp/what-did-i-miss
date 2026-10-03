@@ -1,0 +1,17 @@
+{
+  "contentId": "last_signal_001",
+  "title": "The Last Signal",
+  "type": "movie",
+  "durationMs": 1080000,
+  "language": "en",
+  "description": "A mystery thriller about a woman who receives an anonymous message and follows a man into a basement, discovering a photograph that connects to her past.",
+  "genre": ["mystery", "thriller"],
+  "subtitleTracks": [
+    {
+      "language": "en",
+      "uri": "subtitles/last_signal.vtt"
+    }
+  ],
+  "frameIntervalMs": 12000,
+  "sceneCount": 10
+}

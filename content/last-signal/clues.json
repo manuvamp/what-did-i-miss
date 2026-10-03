@@ -1,0 +1,56 @@
+[
+  {
+    "id": "clue_01",
+    "title": "Anonymous Message",
+    "description": "Sarah received an anonymous message luring her to the meeting, but Michael denies sending it.",
+    "discoveredAtMs": 6000,
+    "relatedCharacters": ["Sarah", "Michael"],
+    "relatedObjects": ["Phone"],
+    "status": "unresolved"
+  },
+  {
+    "id": "clue_02",
+    "title": "Michael's Lie",
+    "description": "Michael claims he's never been to the building but recognizes a photograph of it.",
+    "discoveredAtMs": 32000,
+    "relatedCharacters": ["Michael"],
+    "relatedObjects": ["Photograph"],
+    "status": "unresolved"
+  },
+  {
+    "id": "clue_03",
+    "title": "Missing Key",
+    "description": "A key is missing from Sarah's apartment. Someone who knew about it took it.",
+    "discoveredAtMs": 62000,
+    "relatedCharacters": ["Sarah"],
+    "relatedObjects": ["Key"],
+    "status": "unresolved"
+  },
+  {
+    "id": "clue_04",
+    "title": "Hidden Photograph",
+    "description": "A photograph was deliberately hidden behind a cabinet in the basement.",
+    "discoveredAtMs": 302000,
+    "relatedCharacters": ["Sarah", "Michael"],
+    "relatedObjects": ["Photograph", "Cabinet"],
+    "status": "unresolved"
+  },
+  {
+    "id": "clue_05",
+    "title": "Father's Connection",
+    "description": "The building in the photograph is connected to Sarah's father, who worked there.",
+    "discoveredAtMs": 314000,
+    "relatedCharacters": ["Sarah"],
+    "relatedObjects": ["Photograph"],
+    "status": "unresolved"
+  },
+  {
+    "id": "clue_06",
+    "title": "Active Signal",
+    "description": "The radio signal is still active, suggesting someone else is in the building.",
+    "discoveredAtMs": 482000,
+    "relatedCharacters": ["Sarah", "Michael"],
+    "relatedObjects": ["Radio"],
+    "status": "unresolved"
+  }
+]

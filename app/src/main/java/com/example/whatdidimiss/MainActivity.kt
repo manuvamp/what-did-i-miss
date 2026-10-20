@@ -1,12 +1,19 @@
 package com.example.whatdidimiss
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.whatdidimiss.databinding.ActivityMainBinding
 import com.example.whatdidimiss.networking.ApiClient
+import com.example.whatdidimiss.networking.Highlight
 import com.example.whatdidimiss.player.ContentIndex
 import com.example.whatdidimiss.player.MediaSessionManager
 import com.example.whatdidimiss.player.PlaybackSnapshot
@@ -16,11 +23,22 @@ import com.example.whatdidimiss.questions.QuestionController
 import com.example.whatdidimiss.questions.QuestionState
 import com.example.whatdidimiss.recap.RecapController
 import com.example.whatdidimiss.recap.RecapState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
+import java.net.URL
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
+
+    private companion object {
+        const val SLIDE_MS = 3500L
+        const val FADE_MS = 350L
+    }
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var playerManager: PlayerManager
@@ -40,6 +58,10 @@ class MainActivity : AppCompatActivity() {
     // HLS stream — Sintel served by the backend at /hls/sintel/index.m3u8
     // (see Prompt 4). Falls back to the public bipbop test stream if unset.
     private val hlsUrl = BuildConfig.STREAM_URL
+
+    // Visual recap montage: one coroutine plays the slides; OK/right sends "next".
+    private var montageJob: Job? = null
+    private val nextSlide = Channel<Unit>(Channel.CONFLATED)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +110,11 @@ class MainActivity : AppCompatActivity() {
             recapController.requestRecap()
         }
 
+        binding.visual2Button.setOnClickListener { requestVisualRecap(2) }
+        binding.visual5Button.setOnClickListener { requestVisualRecap(5) }
+        binding.visual10Button.setOnClickListener { requestVisualRecap(10) }
+        binding.visualRecapOverlay.setOnClickListener { nextSlide.trySend(Unit) }
+
         binding.continueButton.setOnClickListener { recapController.dismissRecap() }
         binding.watchMissedButton.setOnClickListener { recapController.watchMissedPart() }
 
@@ -111,7 +138,12 @@ class MainActivity : AppCompatActivity() {
                 when (state) {
                     is RecapState.Idle -> hideRecapOverlay()
                     is RecapState.Loading -> showLoadingOverlay()
-                    is RecapState.Success -> showRecapOverlay(state)
+                    is RecapState.Success ->
+                        if (state.visualWindowMs != null && !state.response.highlights.isNullOrEmpty()) {
+                            playVisualRecap(state)
+                        } else {
+                            showRecapOverlay(state)
+                        }
                     is RecapState.Offline -> showOfflineOverlay(state)
                 }
             }
@@ -152,11 +184,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoadingOverlay() {
+        binding.whatDidIMissButton.visibility = View.GONE
         binding.recapOverlay.visibility = View.VISIBLE
         binding.recapLoading.visibility = View.VISIBLE
         binding.recapLoadingText.visibility = View.VISIBLE
         listOf(
             binding.recapTime, binding.recapSummary, binding.recapImportant,
+            binding.visualLabel, binding.visualButtons,
             binding.continueButton, binding.watchMissedButton,
             binding.questionsLabel, binding.questionChips,
             binding.questionAnswer, binding.questionLoading
@@ -167,6 +201,7 @@ class MainActivity : AppCompatActivity() {
         val response = state.response
         val missedRange = state.missedRange
 
+        binding.whatDidIMissButton.visibility = View.GONE
         binding.recapOverlay.visibility = View.VISIBLE
         binding.recapLoading.visibility = View.GONE
         binding.recapLoadingText.visibility = View.GONE
@@ -184,6 +219,8 @@ class MainActivity : AppCompatActivity() {
             binding.recapImportant.visibility = View.GONE
         }
 
+        binding.visualLabel.visibility = View.VISIBLE
+        binding.visualButtons.visibility = View.VISIBLE
         binding.questionsLabel.visibility = View.VISIBLE
         binding.questionChips.visibility = View.VISIBLE
         binding.continueButton.visibility = View.VISIBLE
@@ -192,6 +229,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showOfflineOverlay(state: RecapState.Offline) {
+        binding.whatDidIMissButton.visibility = View.GONE
         binding.recapOverlay.visibility = View.VISIBLE
         binding.recapLoading.visibility = View.GONE
         binding.recapLoadingText.visibility = View.GONE
@@ -203,7 +241,9 @@ class MainActivity : AppCompatActivity() {
         binding.recapSummary.visibility = View.VISIBLE
         binding.recapImportant.visibility = View.GONE
 
-        // Questions need the backend — hide chips in offline mode
+        // Questions and the visual recap need the backend — hide them in offline mode
+        binding.visualLabel.visibility = View.GONE
+        binding.visualButtons.visibility = View.GONE
         binding.questionsLabel.visibility = View.GONE
         binding.questionChips.visibility = View.GONE
         binding.continueButton.visibility = View.VISIBLE
@@ -211,8 +251,101 @@ class MainActivity : AppCompatActivity() {
         binding.continueButton.requestFocus()
     }
 
+    private fun requestVisualRecap(minutes: Long) {
+        questionController.reset()
+        binding.questionAnswer.visibility = View.GONE
+        recapController.requestRecap(visualWindowMs = TimeUnit.MINUTES.toMillis(minutes))
+    }
+
+    /**
+     * Plays the key moments of the chosen window as a quick montage: each
+     * real frame with a slow push-in and a subtitle-style caption, then lands
+     * on that window's text recap.
+     */
+    private fun playVisualRecap(state: RecapState.Success) {
+        val highlights = state.response.highlights.orEmpty()
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(state.visualWindowMs ?: 0)
+        montageJob?.cancel()
+        while (nextSlide.tryReceive().isSuccess) Unit // drop presses from before the montage
+
+        montageJob = lifecycleScope.launch {
+            binding.recapOverlay.visibility = View.GONE
+            binding.visualRecapOverlay.visibility = View.VISIBLE
+            binding.visualRecapOverlay.requestFocus()
+            binding.visualImage.setImageDrawable(null)
+            binding.visualHeader.text = "LAST $minutes MIN"
+            binding.visualScene.text = ""
+            binding.visualCaption.text = getString(R.string.analyzing)
+            val fills = buildProgressSegments(highlights.size)
+
+            val frames = withContext(Dispatchers.IO) { highlights.map { loadFrame(it) } }
+
+            highlights.forEachIndexed { i, highlight ->
+                binding.visualHeader.text = "LAST $minutes MIN  ·  ${i + 1} / ${highlights.size}"
+                binding.visualScene.text = "${formatTime(highlight.timestampMs)}  ·  ${highlight.sceneTitle}"
+                binding.visualCaption.text = highlight.caption
+                binding.visualImage.setImageBitmap(frames[i])
+                binding.visualImage.apply {
+                    animate().cancel()
+                    alpha = 0f; scaleX = 1f; scaleY = 1f
+                    animate().alpha(1f).setDuration(FADE_MS).start()
+                    // Slow push-in, on its own animator so it outlasts the fade
+                    ObjectAnimator.ofPropertyValuesHolder(
+                        this,
+                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1f, 1.08f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f, 1.08f)
+                    ).setDuration(SLIDE_MS).start()
+                }
+                fills[i].apply {
+                    pivotX = 0f; scaleX = 0f
+                    animate().scaleX(1f).setDuration(SLIDE_MS).start()
+                }
+                withTimeoutOrNull(SLIDE_MS) { nextSlide.receive() }
+                fills[i].animate().cancel()
+                fills[i].scaleX = 1f
+            }
+            finishVisualRecap(state)
+        }
+    }
+
+    private fun finishVisualRecap(state: RecapState.Success) {
+        montageJob?.cancel()
+        montageJob = null
+        binding.visualImage.animate().cancel()
+        binding.visualRecapOverlay.visibility = View.GONE
+        showRecapOverlay(state)
+    }
+
+    /** One thin bar per slide; returns the accent fill views to animate. */
+    private fun buildProgressSegments(count: Int): List<View> {
+        val bar = binding.visualProgress
+        bar.removeAllViews()
+        val gap = (4 * resources.displayMetrics.density).toInt()
+        return List(count) { i ->
+            val track = FrameLayout(this).apply {
+                setBackgroundColor(0x40FFFFFF)
+                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
+                    .apply { if (i > 0) marginStart = gap }
+            }
+            val fill = View(this).apply {
+                setBackgroundColor(getColor(R.color.accent))
+                scaleX = 0f
+            }
+            track.addView(fill, FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+            bar.addView(track)
+            fill
+        }
+    }
+
+    private fun loadFrame(highlight: Highlight): Bitmap? = highlight.frameUrl?.let { path ->
+        runCatching {
+            URL(backendBaseUrl + path).openStream().use { BitmapFactory.decodeStream(it) }
+        }.getOrNull()
+    }
+
     private fun hideRecapOverlay() {
         binding.recapOverlay.visibility = View.GONE
+        binding.whatDidIMissButton.visibility = View.VISIBLE
         binding.whatDidIMissButton.requestFocus()
     }
 
@@ -234,6 +367,24 @@ class MainActivity : AppCompatActivity() {
         binding.recapSummary.text = msg
     }
 
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        // While the montage plays it owns the remote: OK/right = next, BACK = skip.
+        if (binding.visualRecapOverlay.visibility == View.VISIBLE) {
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                val state = recapController.recapState.value
+                when (event.keyCode) {
+                    KeyEvent.KEYCODE_BACK ->
+                        if (state is RecapState.Success) finishVisualRecap(state)
+                    KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER,
+                    KeyEvent.KEYCODE_DPAD_RIGHT, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD ->
+                        nextSlide.trySend(Unit)
+                }
+            }
+            return true
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode) {
             KeyEvent.KEYCODE_BACK -> {
@@ -247,6 +398,18 @@ class MainActivity : AppCompatActivity() {
                     if (binding.debugOverlay.visibility == View.VISIBLE) View.GONE else View.VISIBLE
                 return true
             }
+            // Remote FF / REW: jump 15 s (a forward jump is recorded as missed)
+            KeyEvent.KEYCODE_MEDIA_FAST_FORWARD, KeyEvent.KEYCODE_MEDIA_REWIND -> {
+                if (binding.recapOverlay.visibility != View.VISIBLE) {
+                    val step = if (keyCode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) 15_000L else -15_000L
+                    playerManager.seekTo(maxOf(0L, playerManager.getCurrentPosition() + step))
+                    return true
+                }
+            }
+            // Number keys: visual recap of the last 2 / 5 / 10 minutes
+            KeyEvent.KEYCODE_2 -> { requestVisualRecap(2); return true }
+            KeyEvent.KEYCODE_5 -> { requestVisualRecap(5); return true }
+            KeyEvent.KEYCODE_0 -> { requestVisualRecap(10); return true }
             // Quick trigger: 'M' / Info key during development
             KeyEvent.KEYCODE_M, KeyEvent.KEYCODE_INFO -> {
                 if (binding.recapOverlay.visibility != View.VISIBLE) {
@@ -271,6 +434,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        montageJob?.cancel()
         subtitleManager?.detach()
         mediaSessionManager?.release()
         playerManager.release()

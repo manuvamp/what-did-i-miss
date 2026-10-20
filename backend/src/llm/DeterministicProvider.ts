@@ -1,5 +1,6 @@
 import { AIProvider, StructuredContext, formatTime } from './types';
 import { RecapResponse } from '../api/recap';
+import { pickStoryBeats, storyLine } from '../story/types';
 import { QuestionResponse } from '../api/question';
 
 /**
@@ -16,7 +17,7 @@ export class DeterministicProvider implements AIProvider {
       .filter(e => e.importance >= 0.7)
       .sort((a, b) => b.importance - a.importance)
       .slice(0, 3)
-      .map(e => e.description);
+      .map(storyLine);
 
     // Prefer a clue discovered inside the missed window; otherwise fall back
     // to the most recently discovered clue the viewer knows about.
@@ -68,25 +69,16 @@ export class DeterministicProvider implements AIProvider {
 
     // Do NOT dump currentScene.summary verbatim: a scene can span a reveal
     // boundary, and its prose summary would narrate gated future beats.
-    // Build the recap only from time-gated events (already filtered by the
-    // retrieval layer's spoilerBoundaryMs), naming the scene for context.
-    const gatedEvents = context.events
-      .filter(e => e.importance >= 0.5)
-      .sort((a, b) => a.timestampMs - b.timestampMs);
-
-    if (context.currentScene && gatedEvents.length > 0) {
-      parts.push(`In ${context.currentScene.title}:`);
-    }
-
-    const topEvents = context.events
-      .filter(e => e.importance >= 0.75)
-      .sort((a, b) => a.timestampMs - b.timestampMs)
-      .slice(0, 3);
+    // Tell the recap only from time-gated events (already filtered by the
+    // retrieval layer's spoilerBoundaryMs), spread across the missed window.
+    const topEvents = pickStoryBeats(
+      context.events,
+      context.missedWindow.startMs,
+      context.missedWindow.endMs
+    );
 
     for (const e of topEvents) {
-      if (!parts[0]?.includes(e.description)) {
-        parts.push(e.description.endsWith('.') ? e.description : `${e.description}.`);
-      }
+      parts.push(storyLine(e));
     }
 
     if (parts.length === 0) {

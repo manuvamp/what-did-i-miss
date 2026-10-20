@@ -4,10 +4,14 @@
   "type": "movie",
   "durationMs": 712958,
   "language": "en",
-  "description": "Sintel (c) Blender Foundation | durian.blender.org, CC BY 3.0. A warrior searches for the baby dragon Scales she once rescued, only to face it grown and changed in the final act.",
-  "genre": ["fantasy", "adventure", "drama"],
+  "description": "Sintel (c) Blender Foundation | durian.blender.org, CC BY 3.0. An animated fantasy short about a young woman, a wounded little dragon and a long, lonely journey.",
+  "genre": [
+    "fantasy",
+    "adventure",
+    "drama"
+  ],
   "subtitleTracks": [],
   "frameIntervalMs": 3000,
-  "sceneCount": 12,
-  "notes": "Video has no audio stream. Story derived visually from extracted frames (1 frame / 3s, 238 frames)."
+  "sceneCount": 16,
+  "notes": "Video has no audio stream. Story derived visually from the film itself; see content/sintel/ANALYSIS_NOTES.md. Frame images frames/seq_NNNN.jpg show the film at (NNNN-1)*3+1.5 seconds."
 }

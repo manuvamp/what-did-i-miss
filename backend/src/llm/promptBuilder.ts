@@ -15,9 +15,9 @@ export function buildRecapPrompt(context: StructuredContext): string {
   );
 
   if (context.currentScene) {
-    sections.push(
-      `CURRENT SCENE:\n${context.currentScene.title}\n${context.currentScene.summary}`
-    );
+    // Title only: the summary of the scene in progress covers parts the viewer
+    // hasn't seen yet. What happened so far comes from the time-gated events.
+    sections.push(`CURRENT SCENE:\n${context.currentScene.title}`);
   }
 
   if (context.events.length > 0) {
@@ -84,7 +84,7 @@ export function buildQuestionPrompt(question: string, context: StructuredContext
   sections.push(`CURRENT PLAYBACK POSITION:\n${formatTime(context.positionMs)}`);
 
   if (context.currentScene) {
-    sections.push(`CURRENT SCENE:\n${context.currentScene.title}\n${context.currentScene.summary}`);
+    sections.push(`CURRENT SCENE:\n${context.currentScene.title}`);
   }
 
   if (context.events.length > 0) {

@@ -16,7 +16,12 @@ import kotlinx.coroutines.withContext
 sealed class RecapState {
     object Idle : RecapState()
     object Loading : RecapState()
-    data class Success(val response: RecapResponse, val missedRange: MissedRange) : RecapState()
+    /** [visualWindowMs] is set when the viewer asked for a 2/5/10 min visual recap. */
+    data class Success(
+        val response: RecapResponse,
+        val missedRange: MissedRange,
+        val visualWindowMs: Long? = null
+    ) : RecapState()
     data class Offline(val summary: String, val missedRange: MissedRange) : RecapState()
 }
 
@@ -30,11 +35,21 @@ class RecapController(
     private val _recapState = MutableStateFlow<RecapState>(RecapState.Idle)
     val recapState: StateFlow<RecapState> = _recapState
 
-    fun requestRecap() {
+    /**
+     * With [visualWindowMs] null, recaps the skipped range (or the default
+     * window). Otherwise recaps exactly the last [visualWindowMs] and asks the
+     * UI to play the visual montage first.
+     */
+    fun requestRecap(visualWindowMs: Long? = null) {
         val snapshot = playerManager.playbackSnapshot.value ?: return
-        val missedRange = playerManager.calculateMissedRange()
+        val missedRange = visualWindowMs?.let { playerManager.windowRange(it) }
+            ?: playerManager.calculateMissedRange()
 
         playerManager.pause()
+        if (missedRange.endMs <= missedRange.startMs) {
+            _recapState.value = RecapState.Offline("Nothing to recap yet: the film has only just started.", missedRange)
+            return
+        }
         _recapState.value = RecapState.Loading
 
         scope.launch {
@@ -43,7 +58,9 @@ class RecapController(
                     apiClient.getRecap(
                         RecapRequest(
                             contentId = snapshot.contentId,
-                            currentPositionMs = snapshot.positionMs,
+                            // The snapshot updates on a timer and can lag the range end,
+                            // which the backend rejects; the range end is "now".
+                            currentPositionMs = maxOf(snapshot.positionMs, missedRange.endMs),
                             windowStartMs = missedRange.startMs,
                             windowEndMs = missedRange.endMs
                         )
@@ -52,7 +69,7 @@ class RecapController(
             }
 
             _recapState.value = result.fold(
-                onSuccess = { RecapState.Success(it, missedRange) },
+                onSuccess = { RecapState.Success(it, missedRange, visualWindowMs) },
                 onFailure = {
                     // Offline fallback: scene summary + last dialogue lines from bundled index
                     val offline = contentIndex.offlineRecap(missedRange.startMs, missedRange.endMs)

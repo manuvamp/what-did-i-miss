@@ -149,8 +149,12 @@ class PlayerManager(private val context: Context) {
 
     private fun handleSeek(oldPositionMs: Long, newPositionMs: Long) {
         if (newPositionMs > oldPositionMs + 10000) {
+            // Repeated fast-forward presses extend one skip instead of replacing it
+            val previous = _missedRange.value
+            val continues = previous?.reason == MissedReason.FORWARD_SEEK &&
+                oldPositionMs - previous.endMs in 0..5_000
             _missedRange.value = MissedRange(
-                startMs = oldPositionMs,
+                startMs = if (continues) previous!!.startMs else oldPositionMs,
                 endMs = newPositionMs,
                 reason = MissedReason.FORWARD_SEEK
             )
@@ -161,7 +165,8 @@ class PlayerManager(private val context: Context) {
         val currentPosition = getCurrentPosition()
         val existingMissed = _missedRange.value
 
-        return if (existingMissed != null && existingMissed.endMs == currentPosition) {
+        // A skip counts while the viewer has watched less than a minute past it
+        return if (existingMissed != null && currentPosition - existingMissed.endMs in 0..60_000) {
             existingMissed
         } else {
             MissedRange(
@@ -170,6 +175,16 @@ class PlayerManager(private val context: Context) {
                 reason = MissedReason.DEFAULT_WINDOW
             )
         }
+    }
+
+    /** The last [windowMs] before the current position, regardless of any skip. */
+    fun windowRange(windowMs: Long): MissedRange {
+        val currentPosition = getCurrentPosition()
+        return MissedRange(
+            startMs = maxOf(0, currentPosition - windowMs),
+            endMs = currentPosition,
+            reason = MissedReason.MANUAL
+        )
     }
 
     fun release() {

@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const FF = 'C:\\Users\\cocat\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.exe';
+const FF = process.env.FFMPEG || 'ffmpeg';
 const ROOT = path.resolve(__dirname, '..', 'content', 'sintel');
 const FRAMES = path.join(ROOT, 'frames');
 const OUT = path.join(ROOT, 'sheets');

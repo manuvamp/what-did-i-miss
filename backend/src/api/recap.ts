@@ -24,7 +24,14 @@ const RecapResponseSchema = z.object({
   }).nullable(),
   relevantEarlierContext: z.array(z.string()),
   characters: z.array(z.string()),
-  spoilerChecked: z.boolean()
+  spoilerChecked: z.boolean(),
+  // Key moments for the visual recap; attached by RecapService, not the model.
+  highlights: z.array(z.object({
+    timestampMs: z.number(),
+    sceneTitle: z.string(),
+    caption: z.string(),
+    frameUrl: z.string().nullable()
+  })).optional()
 });
 
 export type RecapRequest = z.infer<typeof RecapRequestSchema>;

@@ -2,67 +2,299 @@
   "description": "Timestamped story states for Sintel. Each state reflects only what is knowable at that time.",
   "states": [
     {
-      "atMs": 48000,
-      "currentCharacters": ["Sintel"],
-      "knownFacts": ["Sintel is traveling alone through the snow", "Her hand is bandaged and bleeding"],
-      "discoveredClues": ["clue_01"],
-      "unresolvedQuestions": ["Where is she going?", "How was she hurt?"],
-      "importantObjects": ["Glowing staff", "Bandaged hand"],
-      "currentLocation": "Snow plains"
+      "atMs": 70000,
+      "currentCharacters": [
+        "Sintel",
+        "Bald Man"
+      ],
+      "knownFacts": [
+        "Sintel, hooded, is alone in a snowy landscape with a staff",
+        "A bald, bearded man attacks her and they grapple",
+        "She ends up lying on her back in the snow",
+        "A staff ending in a round engraved cap lies in the snow"
+      ],
+      "discoveredClues": [
+        "clue_01"
+      ],
+      "unresolvedQuestions": [
+        "Who is the bald man and why does he attack her?"
+      ],
+      "importantObjects": [
+        "Staff",
+        "Engraved disc",
+        "Knife"
+      ],
+      "currentLocation": "Snowy mountains"
     },
     {
-      "atMs": 186000,
-      "currentCharacters": ["Sintel", "Scales", "Shaman"],
-      "knownFacts": ["The shaman rescued Sintel", "A baby dragon Scales lives in the hut", "Sintel and Scales are bonding"],
-      "discoveredClues": ["clue_01", "clue_02"],
-      "unresolvedQuestions": ["Who is the old man?", "Why is a dragon here?"],
-      "importantObjects": ["Baby dragon"],
-      "currentLocation": "Shaman's hut"
+      "atMs": 118000,
+      "currentCharacters": [
+        "Sintel",
+        "Shaman"
+      ],
+      "knownFacts": [
+        "An old man with a gray beard examines the staff in a firelit tent",
+        "Sintel sits by the fire and holds a bowl of pale liquid"
+      ],
+      "discoveredClues": [
+        "clue_01"
+      ],
+      "unresolvedQuestions": [
+        "How did Sintel get from the snow into the tent?"
+      ],
+      "importantObjects": [
+        "Staff",
+        "Engraved disc",
+        "Bowl of pale liquid"
+      ],
+      "currentLocation": "Tent"
     },
     {
-      "atMs": 282000,
-      "currentCharacters": ["Sintel", "Scales", "Shaman"],
-      "knownFacts": ["The shaman teaches Sintel to kill", "The shaman collects dragon trophies", "Scales trusts Sintel"],
-      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_05"],
-      "unresolvedQuestions": ["What does he want her to kill?", "Will she go through with it?"],
-      "importantObjects": ["Knife", "Dragon scale"],
-      "currentLocation": "Shaman's hut"
+      "atMs": 190000,
+      "currentCharacters": [
+        "Sintel",
+        "Scales"
+      ],
+      "knownFacts": [
+        "A wide view shows a huge city",
+        "Sintel finds a little winged creature with a bloodied wing on a rooftop",
+        "She holds out her hand and later holds it in her lap"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02"
+      ],
+      "unresolvedQuestions": [
+        "Who hurt the little dragon?"
+      ],
+      "importantObjects": [
+        "Little dragon"
+      ],
+      "currentLocation": "City rooftops and a cluttered room"
     },
     {
-      "atMs": 378000,
-      "currentCharacters": ["Sintel", "Shaman"],
-      "knownFacts": ["The shaman gave Sintel a forged sword", "The shaman showed Sintel a map to the dragon"],
-      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05"],
-      "unresolvedQuestions": ["Where does the map lead?"],
-      "importantObjects": ["Sword", "Map"],
-      "currentLocation": "Shaman's hut"
+      "atMs": 246000,
+      "currentCharacters": [
+        "Sintel",
+        "Scales"
+      ],
+      "knownFacts": [
+        "Sintel sleeps in a dark cluttered room",
+        "The little dragon races through a market alley with people behind it"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02"
+      ],
+      "unresolvedQuestions": [
+        "Who hurt the little dragon?"
+      ],
+      "importantObjects": [
+        "Little dragon"
+      ],
+      "currentLocation": "Market"
     },
     {
-      "atMs": 501000,
-      "currentCharacters": ["Sintel"],
-      "knownFacts": ["Sintel crossed the mountains alone", "Sintel found and entered the dragon's cave"],
-      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05"],
-      "unresolvedQuestions": ["What waits inside the cave?"],
-      "importantObjects": ["Map"],
-      "currentLocation": "Dragon's cave"
+      "atMs": 318000,
+      "currentCharacters": [
+        "Sintel",
+        "Scales",
+        "Large Dragon"
+      ],
+      "knownFacts": [
+        "The little dragon flies over the rooftops at sunset",
+        "A much larger dragon flies in; a pale dragon hovers with spread wings",
+        "Sintel ends up alone among ruins, angry"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03"
+      ],
+      "unresolvedQuestions": [
+        "What happens to the little dragon?",
+        "Where is Sintel going next?"
+      ],
+      "importantObjects": [
+        "Little dragon"
+      ],
+      "currentLocation": "City rooftops"
     },
     {
-      "atMs": 633000,
-      "currentCharacters": ["Sintel", "Adult Dragon"],
-      "knownFacts": ["A baby-dragon vision appears in the cave", "The dragon's story is shown in a vision", "The adult dragon has revealed itself"],
-      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05", "clue_06"],
-      "unresolvedQuestions": ["Will Sintel fight it?"],
-      "importantObjects": ["Glowing sword"],
-      "currentLocation": "Dragon's cave"
+      "atMs": 404000,
+      "currentCharacters": [
+        "Sintel"
+      ],
+      "knownFacts": [
+        "Sintel travels through a desert, a bamboo forest and a rocky canyon",
+        "A hooded traveller with a staff crosses misty mountains and snow, and a figure lies down in the snow"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03"
+      ],
+      "unresolvedQuestions": [
+        "Where is Sintel going?"
+      ],
+      "importantObjects": [
+        "Staff"
+      ],
+      "currentLocation": "Snowy mountains"
     },
     {
-      "atMs": 690000,
-      "currentCharacters": ["Sintel", "Adult Dragon"],
-      "knownFacts": ["Sintel fought the dragon", "The dragon recognized Sintel", "The dragon is Scales grown up", "Sintel cradled the dying Scales"],
-      "discoveredClues": ["clue_01", "clue_02", "clue_03", "clue_04", "clue_05", "clue_06", "clue_07"],
+      "atMs": 452000,
+      "currentCharacters": [
+        "Sintel",
+        "Shaman"
+      ],
+      "knownFacts": [
+        "Back in the tent, fingers rest on a disc engraved with a tree",
+        "A lone tree stands on a dark hillside"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03",
+        "clue_04"
+      ],
+      "unresolvedQuestions": [
+        "Where does the tree lead?"
+      ],
+      "importantObjects": [
+        "Staff",
+        "Engraved disc",
+        "Tree emblem"
+      ],
+      "currentLocation": "Dark hillside"
+    },
+    {
+      "atMs": 500000,
+      "currentCharacters": [
+        "Sintel",
+        "Adult Dragon"
+      ],
+      "knownFacts": [
+        "Sintel enters a crystal cave",
+        "She sees an enormous dragon lying far away"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03",
+        "clue_04",
+        "clue_05"
+      ],
+      "unresolvedQuestions": [
+        "What is the enormous dragon doing?"
+      ],
+      "importantObjects": [
+        "Staff"
+      ],
+      "currentLocation": "Crystal cave"
+    },
+    {
+      "atMs": 578000,
+      "currentCharacters": [
+        "Sintel",
+        "Adult Dragon"
+      ],
+      "knownFacts": [
+        "A young dragon sleeps on a rock",
+        "The enormous dragon breathes fire",
+        "Sintel is brought down in a fight and ends up gripping a dagger"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03",
+        "clue_04",
+        "clue_05",
+        "clue_06"
+      ],
+      "unresolvedQuestions": [
+        "How will the fight end?"
+      ],
+      "importantObjects": [
+        "Knife"
+      ],
+      "currentLocation": "Crystal cave"
+    },
+    {
+      "atMs": 604000,
+      "currentCharacters": [
+        "Sintel",
+        "Adult Dragon"
+      ],
+      "knownFacts": [
+        "The enormous dragon lies on the cave floor with red beneath it",
+        "Sintel stands a few paces away, frightened"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03",
+        "clue_04",
+        "clue_05",
+        "clue_06"
+      ],
+      "unresolvedQuestions": [
+        "Why is Sintel so shaken?"
+      ],
+      "importantObjects": [],
+      "currentLocation": "Crystal cave"
+    },
+    {
+      "atMs": 622000,
+      "currentCharacters": [
+        "Sintel",
+        "Scales",
+        "Adult Dragon"
+      ],
+      "knownFacts": [
+        "The fallen dragon is Scales, the little dragon from the rooftops, grown up",
+        "Images of her journey flash behind Sintel's face and she reaches out an open hand"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03",
+        "clue_04",
+        "clue_05",
+        "clue_06",
+        "clue_07"
+      ],
       "unresolvedQuestions": [],
-      "importantObjects": ["Glowing sword"],
-      "currentLocation": "Dragon's cave"
+      "importantObjects": [],
+      "currentLocation": "Crystal cave"
+    },
+    {
+      "atMs": 700000,
+      "currentCharacters": [
+        "Sintel"
+      ],
+      "knownFacts": [
+        "Sintel leaves the cave and sits alone on a cliff edge",
+        "She walks away past snowdrop flowers",
+        "A small tan winged creature appears on the ground in the distance"
+      ],
+      "discoveredClues": [
+        "clue_01",
+        "clue_02",
+        "clue_03",
+        "clue_04",
+        "clue_05",
+        "clue_06",
+        "clue_07"
+      ],
+      "unresolvedQuestions": [
+        "What is the small winged creature at the end?"
+      ],
+      "importantObjects": [
+        "Tree emblem",
+        "Snowdrop flowers"
+      ],
+      "currentLocation": "Barren plain"
     }
   ]
 }

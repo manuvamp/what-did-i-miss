@@ -7,4 +7,9 @@
     <string name="you_missed">You missed %1$s</string>
     <string name="important">IMPORTANT</string>
     <string name="title_activity_main">What Did I Miss?</string>
+    <string name="visual_recap">VISUAL RECAP: KEY MOMENTS</string>
+    <string name="last_2_min">Last 2 min</string>
+    <string name="last_5_min">Last 5 min</string>
+    <string name="last_10_min">Last 10 min</string>
+    <string name="visual_hint">OK next · BACK skip</string>
 </resources>

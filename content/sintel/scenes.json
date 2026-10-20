@@ -2,195 +2,435 @@
   {
     "id": "scene_01",
     "startMs": 0,
-    "endMs": 48000,
-    "title": "The Wounded Traveler",
-    "summary": "Sintel, cloaked and carrying a glowing staff, travels alone through a vast misty snowscape. She is weary and injured.",
-    "characters": ["Sintel"],
-    "locations": ["Snow plains"],
-    "importantObjects": ["Glowing staff", "Cloak"],
-    "events": ["Sintel walks alone through the snow"],
-    "clues": ["Sintel is on a long solitary journey"],
-    "questionsRaised": ["Where is she going?", "What happened to her hand?"],
+    "endMs": 70000,
+    "title": "Attack in the Snow",
+    "summary": "Sintel, hooded against the cold and carrying a staff, is alone in a white mountain landscape. A bald, bearded man attacks her and they grapple on the slope; she ends up lying on her back in the snow with a long pole across her body. A wide shot shows a small glowing light far away, then a staff with a round engraved end lies in the snow and the title SINTEL appears.",
+    "characters": [
+      "Sintel",
+      "Bald Man"
+    ],
+    "locations": [
+      "Snowy mountains"
+    ],
+    "importantObjects": [
+      "Staff",
+      "Engraved disc",
+      "Knife",
+      "Tree emblem"
+    ],
+    "events": [
+      "Sintel is alone in the snow with a staff",
+      "A bald man attacks her and they grapple",
+      "She ends up on her back in the snow",
+      "The title SINTEL appears"
+    ],
+    "clues": [
+      "A staff with a round engraved end"
+    ],
+    "questionsRaised": [
+      "Who is the bald man and why does he attack her?",
+      "What is the glowing light in the distance?"
+    ],
     "questionsResolved": []
   },
   {
     "id": "scene_02",
-    "startMs": 48000,
-    "endMs": 120000,
-    "title": "Collapse in the Blizzard",
-    "summary": "A blizzard hits. Sintel's bandaged, bleeding hand is shown in close-up. She struggles against the wind and finally collapses in the snow.",
-    "characters": ["Sintel"],
-    "locations": ["Snow plains"],
-    "importantObjects": ["Bandaged hand"],
-    "events": ["Close-up of Sintel's injured hand", "Sintel collapses exhausted in the snow"],
-    "clues": ["Her hand injury is serious and untreated"],
-    "questionsRaised": ["How was she hurt?", "Will anyone find her?"],
+    "startMs": 70000,
+    "endMs": 118000,
+    "title": "Firelit Tent",
+    "summary": "Inside a round tent with a fire at its centre, an old man with a gray beard examines a staff that ends in a round metal cap. Sintel, in a sleeveless top, sits by the fire with him and is later seen holding a bowl of pale liquid.",
+    "characters": [
+      "Shaman",
+      "Sintel"
+    ],
+    "locations": [
+      "Tent"
+    ],
+    "importantObjects": [
+      "Staff",
+      "Engraved disc",
+      "Bowl of pale liquid"
+    ],
+    "events": [
+      "The old man examines the staff",
+      "Sintel sits by the fire and holds a bowl of pale liquid"
+    ],
+    "clues": [],
+    "questionsRaised": [
+      "How did Sintel get from the snow into the tent?"
+    ],
     "questionsResolved": []
   },
   {
     "id": "scene_03",
-    "startMs": 120000,
-    "endMs": 141000,
-    "title": "Rescue",
-    "summary": "Sintel stumbles through a snowy street and is found by an old shaman, who opens his door and takes her in.",
-    "characters": ["Sintel", "Shaman"],
-    "locations": ["Snowy street", "Shaman's hut"],
+    "startMs": 118000,
+    "endMs": 146000,
+    "title": "City of Rooftops",
+    "summary": "A wide view of a huge city of crowded rooftops under a hazy sky, then a narrow sunlit alley where Sintel, now in a sleeveless top with short hair, is seen on a terrace.",
+    "characters": [
+      "Sintel"
+    ],
+    "locations": [
+      "City"
+    ],
     "importantObjects": [],
-    "events": ["Sintel is found by the shaman", "The shaman takes Sintel inside"],
+    "events": [
+      "Wide view over the city",
+      "Sintel in a sunlit alley and on a terrace"
+    ],
     "clues": [],
-    "questionsRaised": ["Who is the old man?"],
-    "questionsResolved": ["Will anyone find her?"]
+    "questionsRaised": [
+      "What is Sintel doing in the city?"
+    ],
+    "questionsResolved": []
   },
   {
     "id": "scene_04",
-    "startMs": 141000,
-    "endMs": 186000,
-    "title": "A Baby Dragon",
-    "summary": "Inside the hut, as the shaman examines Sintel's hand, a small red-scaled baby dragon nudges her from under the fireplace. Sintel wakes and gently pets it.",
-    "characters": ["Sintel", "Scales", "Shaman"],
-    "locations": ["Shaman's hut"],
-    "importantObjects": ["Baby dragon"],
-    "events": ["Baby dragon Scales appears", "Sintel pets the baby dragon"],
-    "clues": ["Scales lives in the shaman's hut"],
-    "questionsRaised": ["Why is a dragon here?"],
+    "startMs": 146000,
+    "endMs": 190000,
+    "title": "A Wounded Little Dragon",
+    "summary": "Sintel hurries through the alleys and climbs onto a tiled roof. On a cobbled rooftop she finds a little winged creature with a bloodied wing and crouches near it. She holds out her hand and the creature looks at it. Later, in a cluttered room, she holds the little dragon in her lap with a hand on its head; blood is visible near its wing.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "locations": [
+      "City rooftops",
+      "Cluttered room"
+    ],
+    "importantObjects": [
+      "Little dragon"
+    ],
+    "events": [
+      "Sintel finds a little winged creature with a bloodied wing",
+      "She holds out her hand to it",
+      "She cradles it in her lap"
+    ],
+    "clues": [
+      "A wounded little dragon"
+    ],
+    "questionsRaised": [
+      "Who hurt the little dragon?"
+    ],
     "questionsResolved": []
   },
   {
     "id": "scene_05",
-    "startMs": 186000,
-    "endMs": 234000,
-    "title": "Taught to Kill",
-    "summary": "The shaman makes a throat-slashing gesture and demonstrates how to kill with a knife. Scales watches anxiously. Sintel's expression hardens with unease.",
-    "characters": ["Sintel", "Scales", "Shaman"],
-    "locations": ["Shaman's hut"],
-    "importantObjects": ["Knife"],
-    "events": ["The shaman teaches Sintel to kill", "Scales appears frightened"],
-    "clues": ["The shaman hunts dragons", "Sintel is being trained for something dark"],
-    "questionsRaised": ["What does he want her to kill?"],
+    "startMs": 190000,
+    "endMs": 216000,
+    "title": "Night in a Cluttered Room",
+    "summary": "Hands settle a basket on a blanket in the dark. At night, someone lies asleep on a bed in a dark, cluttered room. The picture dissolves into warm light over fabric and a close view of the little dragon's scaly body beside a hand.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "locations": [
+      "Cluttered room"
+    ],
+    "importantObjects": [
+      "Little dragon"
+    ],
+    "events": [
+      "Night in the room, someone asleep on a bed",
+      "Dissolve to the little dragon's scaly body in warm light"
+    ],
+    "clues": [],
+    "questionsRaised": [],
     "questionsResolved": []
   },
   {
     "id": "scene_06",
-    "startMs": 234000,
-    "endMs": 282000,
-    "title": "Trust",
-    "summary": "Scales rests its head on Sintel's shoulder by the fire, then curiously mouths her bandaged hand. Sintel looks around the hut and notices dragon artifacts: crystals, a large dragon scale, a dragon figurine. She begins to understand the shaman's trade.",
-    "characters": ["Sintel", "Scales"],
-    "locations": ["Shaman's hut"],
-    "importantObjects": ["Dragon scale", "Crystal shelf", "Dragon figurine"],
-    "events": ["Scales comforts Sintel", "Sintel notices the shaman's dragon trophies"],
-    "clues": ["The shaman collects dragon parts", "Scales trusts Sintel completely"],
-    "questionsRaised": ["Will she go through with it?"],
+    "startMs": 216000,
+    "endMs": 246000,
+    "title": "Market Chase",
+    "summary": "The little dragon dashes down a market alley with people hurrying behind it; chickens scatter and a figure leaps between buildings. Sintel then stands in the market with an alert look on her face.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "locations": [
+      "Market"
+    ],
+    "importantObjects": [
+      "Little dragon"
+    ],
+    "events": [
+      "The little dragon races through a market alley",
+      "Sintel in the market"
+    ],
+    "clues": [],
+    "questionsRaised": [],
     "questionsResolved": []
   },
   {
     "id": "scene_07",
-    "startMs": 282000,
-    "endMs": 330000,
-    "title": "Play and the Forge",
-    "summary": "Sintel and Scales play-wrestle joyfully. Later the shaman tends a fire with intense focus, working on something unseen.",
-    "characters": ["Sintel", "Scales", "Shaman"],
-    "locations": ["Shaman's hut"],
-    "importantObjects": ["Fire / forge"],
-    "events": ["Sintel and Scales play together", "The shaman works at the forge"],
-    "clues": ["The shaman is forging a weapon"],
-    "questionsRaised": ["What is he making?"],
+    "startMs": 246000,
+    "endMs": 282000,
+    "title": "Rooftops at Sunset",
+    "summary": "The little dragon perches on a ledge with birds in the sky behind it, and Sintel smiles. She climbs a slanted tiled roof toward warm evening light and reaches a high ruined rooftop. At one point she laughs with her hands on her head. Several small winged creatures fly across the sunset sky above the rooftops while she watches.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "locations": [
+      "City rooftops"
+    ],
+    "importantObjects": [
+      "Little dragon"
+    ],
+    "events": [
+      "The little dragon on a ledge",
+      "Sintel climbs a tiled roof",
+      "Winged creatures fly across the sunset"
+    ],
+    "clues": [],
+    "questionsRaised": [],
     "questionsResolved": []
   },
   {
     "id": "scene_08",
-    "startMs": 330000,
-    "endMs": 378000,
-    "title": "The Sword and the Map",
-    "summary": "The shaman forges and quenches a blade, then presents it to Sintel. He shows her a map and points to a destination. Sintel grips the sword with resolve.",
-    "characters": ["Sintel", "Shaman"],
-    "locations": ["Shaman's hut"],
-    "importantObjects": ["Sword", "Map"],
-    "events": ["The shaman gives Sintel a sword", "The shaman shows Sintel a map"],
-    "clues": ["Sintel is being sent to kill a dragon", "The map leads to the dragon's lair"],
-    "questionsRaised": ["Where does the map lead?"],
-    "questionsResolved": ["What is he making?"]
+    "startMs": 282000,
+    "endMs": 318000,
+    "title": "A Much Larger Dragon",
+    "summary": "A much larger dragon with a long tail flies in near the little dragon above the rooftops. Sintel watches in alarm and reaches up toward a small dragon flying overhead. A pale, winged dragon with spread wings hovers over the rooftops. Afterwards Sintel stands alone among ruins, her expression hardening into anger.",
+    "characters": [
+      "Sintel",
+      "Scales",
+      "Large Dragon"
+    ],
+    "locations": [
+      "City rooftops"
+    ],
+    "importantObjects": [
+      "Little dragon"
+    ],
+    "events": [
+      "A much larger dragon flies in",
+      "A pale dragon with spread wings hovers over the rooftops",
+      "Sintel alone among ruins, angry"
+    ],
+    "clues": [
+      "A much larger dragon"
+    ],
+    "questionsRaised": [
+      "What happens to the little dragon?",
+      "Where is Sintel going next?"
+    ],
+    "questionsResolved": []
   },
   {
     "id": "scene_09",
-    "startMs": 378000,
-    "endMs": 423000,
-    "title": "Departure",
-    "summary": "Sintel sits with Scales on her lap, torn. She looks at the map one last time, steels herself, and walks away from the hut into the cold, glancing back.",
-    "characters": ["Sintel", "Scales"],
-    "locations": ["Shaman's hut", "Snow plains"],
-    "importantObjects": ["Map"],
-    "events": ["Sintel says goodbye to Scales", "Sintel leaves the hut with the map"],
-    "clues": ["Sintel is conflicted about her mission"],
-    "questionsRaised": ["Will she find the dragon?"],
+    "startMs": 318000,
+    "endMs": 384000,
+    "title": "A Long Journey",
+    "summary": "Dissolving landscapes show a traveller crossing the world: a dusk plain of dead trees, a moonlit sky, a vast sand desert with a tiny figure, a dense bamboo forest, a rocky canyon at sunset where Sintel rests, a hooded traveller with a staff in misty mountains, and finally a snowy peak.",
+    "characters": [
+      "Sintel"
+    ],
+    "locations": [
+      "Dusk plain",
+      "Desert",
+      "Bamboo forest",
+      "Rocky canyon",
+      "Misty mountains"
+    ],
+    "importantObjects": [
+      "Staff"
+    ],
+    "events": [
+      "A tiny figure crosses a desert",
+      "Landscapes dissolve one into another"
+    ],
+    "clues": [],
+    "questionsRaised": [
+      "Where is she heading?"
+    ],
     "questionsResolved": []
   },
   {
     "id": "scene_10",
-    "startMs": 423000,
-    "endMs": 501000,
-    "title": "The Journey to the Lair",
-    "summary": "Sintel treks alone through harsh mountains — climbing, checking the map, camping at night — then finds a vast cave and climbs down inside.",
-    "characters": ["Sintel"],
-    "locations": ["Mountains", "Dragon's cave entrance"],
-    "importantObjects": ["Map", "Campfire"],
-    "events": ["Sintel crosses the mountains", "Sintel enters the dragon's cave"],
+    "startMs": 384000,
+    "endMs": 404000,
+    "title": "Back in the Snow",
+    "summary": "In a snowy landscape a figure in a hooded coat lies in the snow with a long staff beside her, then a figure walks on through deep snow with a staff, footprints trailing behind.",
+    "characters": [
+      "Sintel"
+    ],
+    "locations": [
+      "Snowy mountains"
+    ],
+    "importantObjects": [
+      "Staff"
+    ],
+    "events": [
+      "A figure lies in the snow with a staff",
+      "She walks on through the snow"
+    ],
     "clues": [],
-    "questionsRaised": ["What waits inside the cave?"],
-    "questionsResolved": ["Will she find the dragon?"]
+    "questionsRaised": [],
+    "questionsResolved": []
   },
   {
     "id": "scene_11",
-    "startMs": 501000,
-    "endMs": 549000,
-    "title": "Inside the Cave",
-    "summary": "Sintel descends through a vast cavern with a waterfall and misty peaks. At a dark opening she sees a torch and a hooded figure, then a projection of a baby-dragon shape on the wall.",
-    "characters": ["Sintel"],
-    "locations": ["Dragon's cave interior"],
-    "importantObjects": ["Torch", "Shadow-puppet vision"],
-    "events": ["Sintel explores the cavern", "A vision of a baby dragon appears"],
-    "clues": ["A baby-dragon image appears in the dragon's lair"],
-    "questionsRaised": ["Why is there a baby-dragon image here?"],
+    "startMs": 404000,
+    "endMs": 452000,
+    "title": "The Tent Again",
+    "summary": "Back in the firelit tent, the old man and Sintel sit across from each other. Fingers rest on a round metal disc engraved with rings of symbols and a tree. The tree dissolves into a real tree on a dark hillside, and Sintel is seen on the dark hillside with a staff that has a bladed head.",
+    "characters": [
+      "Shaman",
+      "Sintel"
+    ],
+    "locations": [
+      "Tent",
+      "Dark hillside"
+    ],
+    "importantObjects": [
+      "Staff",
+      "Engraved disc",
+      "Tree emblem"
+    ],
+    "events": [
+      "A disc engraved with a tree",
+      "A lone tree on a dark hillside"
+    ],
+    "clues": [
+      "A tree engraved on a disc"
+    ],
+    "questionsRaised": [
+      "Where does the tree lead?"
+    ],
     "questionsResolved": []
   },
   {
     "id": "scene_12",
-    "startMs": 549000,
-    "endMs": 633000,
-    "title": "The Dragon and the Story",
-    "summary": "A great dark dragon appears in shadow. A Persian-style illustrated sequence tells the dragon's story — a ship, a knight fighting a dragon — then the real dragon reveals itself in the cave: larger, older, with big eyes and horns.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "locations": ["Dragon's cave interior"],
-    "importantObjects": ["Illustrated scroll vision"],
-    "events": ["The dragon's story is shown in a vision", "The adult dragon reveals itself"],
-    "clues": ["The dragon in the cave has its own history"],
-    "questionsRaised": ["Will Sintel fight it?"],
-    "questionsResolved": ["What waits inside the cave?"]
+    "startMs": 452000,
+    "endMs": 500000,
+    "title": "Crystal Cave",
+    "summary": "A moonlit cave mouth opens onto a cave lit by glowing crystals. Peering from behind rocks, Sintel sees an enormous dragon lying far across the cave. In close view, a grey dragon lowers its head over a raw red wound. Sintel watches from behind a rock, then climbs on with her spear.",
+    "characters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
+    "locations": [
+      "Crystal cave"
+    ],
+    "importantObjects": [
+      "Staff"
+    ],
+    "events": [
+      "Sintel sees an enormous dragon lying in the distance",
+      "A grey dragon over a raw red wound"
+    ],
+    "clues": [
+      "An enormous dragon in the crystal cave"
+    ],
+    "questionsRaised": [
+      "What is the enormous dragon doing?"
+    ],
+    "questionsResolved": []
   },
   {
     "id": "scene_13",
-    "startMs": 633000,
-    "endMs": 690000,
-    "title": "The Fight and the Recognition",
-    "summary": "Sintel fights the dragon, striking its hide with her glowing blade. The dragon catches her blade in its jaws, then stops — it looks at her with recognition and whimpers. Sintel's face fills with dawning horror as she realizes the truth.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "locations": ["Dragon's cave interior"],
-    "importantObjects": ["Glowing sword"],
-    "events": ["Sintel battles the dragon", "The dragon recognizes Sintel", "Sintel realizes the dragon is Scales"],
-    "clues": ["The final dragon is Scales grown up"],
-    "questionsRaised": [],
-    "questionsResolved": ["Will Sintel fight it?", "Why is there a baby-dragon image here?"]
+    "startMs": 500000,
+    "endMs": 578000,
+    "title": "Dragon in the Cave",
+    "summary": "Sintel finds a young dragon curled asleep on a rock. Then the enormous dragon breathes a jet of fire across the cave. A fight follows: Sintel is brought down and crawls across the cave floor while the dragon looms over her with its claws, wings and head. She ends up gripping a dagger in both hands, her face tense.",
+    "characters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
+    "locations": [
+      "Crystal cave"
+    ],
+    "importantObjects": [
+      "Knife"
+    ],
+    "events": [
+      "A young dragon asleep on a rock",
+      "The enormous dragon breathes fire",
+      "Sintel fights the dragon and ends up gripping a dagger"
+    ],
+    "clues": [
+      "A young dragon asleep on a rock"
+    ],
+    "questionsRaised": [
+      "How will the fight end?"
+    ],
+    "questionsResolved": []
   },
   {
     "id": "scene_14",
-    "startMs": 690000,
-    "endMs": 712958,
-    "title": "What She Has Done",
-    "summary": "Sintel cradles the dying dragon's head in her arms as it lies still. She sobs over it, heartbroken, as the frame fades. End credits follow.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "locations": ["Dragon's cave interior"],
+    "startMs": 578000,
+    "endMs": 605000,
+    "title": "The Dragon Falls",
+    "summary": "The enormous dragon lies on the cave floor with a red pool spreading beneath its head while Sintel stands a few paces away, frightened. A close view of the dragon's head resting on the ground is followed by Sintel's red-tinted face.",
+    "characters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
+    "locations": [
+      "Crystal cave"
+    ],
     "importantObjects": [],
-    "events": ["Sintel kills Scales", "Sintel mourns over the dragon"],
+    "events": [
+      "The dragon lies on the cave floor",
+      "Sintel stands frightened beside it"
+    ],
+    "clues": [],
+    "questionsRaised": [
+      "Why is Sintel so shaken?"
+    ],
+    "questionsResolved": []
+  },
+  {
+    "id": "scene_15",
+    "startMs": 605000,
+    "endMs": 644000,
+    "title": "Recognition and Grief",
+    "summary": "Images of the places from Sintel's long journey flash behind her red-tinted face as she stares at the fallen dragon: this is Scales, the little dragon from the rooftops, grown up. Sintel reaches out an open hand toward it, as she once reached toward the little dragon in the sky, then stands by the fallen dragon, stricken.",
+    "characters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
+    "locations": [
+      "Crystal cave"
+    ],
+    "importantObjects": [],
+    "events": [
+      "Sintel realises the dragon is Scales",
+      "She reaches out an open hand",
+      "She stands over the fallen dragon"
+    ],
+    "clues": [
+      "The fallen dragon is Scales"
+    ],
+    "questionsRaised": [],
+    "questionsResolved": [
+      "Who is the enormous dragon? It is Scales."
+    ]
+  },
+  {
+    "id": "scene_16",
+    "startMs": 644000,
+    "endMs": 712958,
+    "title": "After the Cave",
+    "summary": "A bright cave opening, then a vast tree over a misty landscape with a tiny figure in the distance. Sintel sits alone on a cliff edge with her head bowed, then appears in close view, her face pained and tree roots behind her. She walks away across barren ground past white snowdrop flowers in the foreground. A small tan winged creature appears on the ground in the distance as the film ends.",
+    "characters": [
+      "Sintel"
+    ],
+    "locations": [
+      "Cliff edge",
+      "Barren plain"
+    ],
+    "importantObjects": [
+      "Tree emblem",
+      "Snowdrop flowers"
+    ],
+    "events": [
+      "Sintel sits alone on a cliff edge",
+      "Sintel walks away",
+      "A small winged creature appears on the ground"
+    ],
     "clues": [],
     "questionsRaised": [],
     "questionsResolved": []

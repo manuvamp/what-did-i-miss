@@ -1,70 +1,173 @@
 [
   {
     "name": "Sintel",
-    "firstAppearanceMs": 12000,
-    "lastAppearanceMs": 690000,
-    "relationships": ["Scales", "Shaman", "Adult Dragon"],
-    "knownFacts": [
-      { "knownAtMs": 12000, "fact": "Sintel is traveling alone through the snow" },
-      { "knownAtMs": 48000, "fact": "Sintel's hand is bandaged and bleeding" },
-      { "knownAtMs": 123000, "fact": "Sintel is rescued by the shaman" },
-      { "knownAtMs": 168000, "fact": "Sintel bonds with the baby dragon Scales" },
-      { "knownAtMs": 204000, "fact": "Sintel is taught to kill by the shaman" },
-      { "knownAtMs": 270000, "fact": "Sintel sees the shaman's dragon trophies" },
-      { "knownAtMs": 345000, "fact": "Sintel receives a forged sword" },
-      { "knownAtMs": 363000, "fact": "Sintel is given a map to the dragon's lair" },
-      { "knownAtMs": 396000, "fact": "Sintel leaves Scales behind to hunt the dragon" },
-      { "knownAtMs": 495000, "fact": "Sintel enters the dragon's cave" },
-      { "knownAtMs": 588000, "fact": "Sintel faces the adult dragon" },
-      { "knownAtMs": 640000, "fact": "Sintel realizes the dragon is Scales" },
-      { "knownAtMs": 654000, "fact": "Sintel cradles the dying Scales" }
+    "firstAppearanceMs": 0,
+    "lastAppearanceMs": 711000,
+    "relationships": [
+      "Shaman",
+      "Scales",
+      "Adult Dragon"
     ],
-    "currentGoal": "Find and kill the dragon on the map",
-    "currentLocation": "Dragon's cave"
+    "knownFacts": [
+      {
+        "knownAtMs": 0,
+        "fact": "Sintel is hooded and alone in a snowy landscape with a staff"
+      },
+      {
+        "knownAtMs": 17900,
+        "fact": "A bald man attacks her and they grapple"
+      },
+      {
+        "knownAtMs": 44900,
+        "fact": "She ends up lying on her back in the snow"
+      },
+      {
+        "knownAtMs": 150900,
+        "fact": "She finds a little winged creature with a bloodied wing"
+      },
+      {
+        "knownAtMs": 179900,
+        "fact": "She holds the little dragon in her lap"
+      },
+      {
+        "knownAtMs": 283000,
+        "fact": "A much larger dragon appears above the rooftops and Sintel is alarmed"
+      },
+      {
+        "knownAtMs": 314900,
+        "fact": "Alone among ruins, her expression hardens into anger"
+      },
+      {
+        "knownAtMs": 338900,
+        "fact": "She crosses a desert, a bamboo forest and a rocky canyon"
+      },
+      {
+        "knownAtMs": 467900,
+        "fact": "She enters a crystal cave and sees an enormous dragon"
+      },
+      {
+        "knownAtMs": 575900,
+        "fact": "She fights the enormous dragon and ends up gripping a dagger"
+      },
+      {
+        "knownAtMs": 622000,
+        "fact": "The fallen dragon is Scales, grown up"
+      },
+      {
+        "knownAtMs": 659900,
+        "fact": "She sits alone on a cliff edge and later walks away"
+      }
+    ],
+    "currentGoal": "Unknown from the images",
+    "currentLocation": "Snowy mountains"
   },
   {
-    "name": "Scales",
-    "firstAppearanceMs": 144000,
-    "lastAppearanceMs": 690000,
-    "relationships": ["Sintel", "Shaman"],
-    "knownFacts": [
-      { "knownAtMs": 144000, "fact": "Scales is a baby dragon living in the shaman's hut" },
-      { "knownAtMs": 168000, "fact": "Scales trusts and bonds with Sintel" },
-      { "knownAtMs": 240000, "fact": "Scales comforts Sintel by the fire" },
-      { "knownAtMs": 288000, "fact": "Scales plays with Sintel" },
-      { "knownAtMs": 396000, "fact": "Scales is left behind when Sintel departs" }
+    "name": "Bald Man",
+    "firstAppearanceMs": 12000,
+    "lastAppearanceMs": 45000,
+    "relationships": [
+      "Sintel"
     ],
-    "currentGoal": "Stay near Sintel",
-    "currentLocation": "Shaman's hut"
+    "knownFacts": [
+      {
+        "knownAtMs": 17900,
+        "fact": "A bald, bearded man attacks Sintel and they grapple in the snow"
+      }
+    ],
+    "currentLocation": "Snowy mountains"
   },
   {
     "name": "Shaman",
-    "firstAppearanceMs": 123000,
-    "lastAppearanceMs": 378000,
-    "relationships": ["Sintel", "Scales"],
-    "knownFacts": [
-      { "knownAtMs": 123000, "fact": "The shaman rescues Sintel from the snow" },
-      { "knownAtMs": 204000, "fact": "The shaman teaches Sintel to kill" },
-      { "knownAtMs": 270000, "fact": "The shaman collects dragon trophies" },
-      { "knownAtMs": 345000, "fact": "The shaman forges a sword for Sintel" },
-      { "knownAtMs": 363000, "fact": "The shaman sends Sintel to kill a dragon" }
+    "firstAppearanceMs": 78000,
+    "lastAppearanceMs": 432000,
+    "relationships": [
+      "Sintel"
     ],
-    "currentGoal": "Send Sintel to kill the dragon",
-    "currentLocation": "Shaman's hut"
+    "knownFacts": [
+      {
+        "knownAtMs": 77900,
+        "fact": "An old man with a gray beard examines a staff in a firelit tent"
+      },
+      {
+        "knownAtMs": 409000,
+        "fact": "The old man and Sintel sit across from each other in the tent again"
+      }
+    ],
+    "currentLocation": "Tent"
+  },
+  {
+    "name": "Scales",
+    "firstAppearanceMs": 150900,
+    "lastAppearanceMs": 297000,
+    "relationships": [
+      "Sintel"
+    ],
+    "knownFacts": [
+      {
+        "knownAtMs": 150900,
+        "fact": "A little winged creature with a bloodied wing lies on a rooftop"
+      },
+      {
+        "knownAtMs": 167900,
+        "fact": "It looks at Sintel's outstretched hand"
+      },
+      {
+        "knownAtMs": 179900,
+        "fact": "Sintel holds it in her lap"
+      },
+      {
+        "knownAtMs": 272900,
+        "fact": "It flies across the sunset sky above the rooftops"
+      },
+      {
+        "knownAtMs": 622000,
+        "fact": "The enormous dragon Sintel fought in the cave is Scales, grown up"
+      }
+    ],
+    "currentLocation": "City rooftops"
+  },
+  {
+    "name": "Large Dragon",
+    "firstAppearanceMs": 283000,
+    "lastAppearanceMs": 306000,
+    "relationships": [],
+    "knownFacts": [
+      {
+        "knownAtMs": 281900,
+        "fact": "A much larger dragon with a long tail flies in above the rooftops"
+      },
+      {
+        "knownAtMs": 302900,
+        "fact": "A pale, winged dragon with spread wings hovers over the rooftops"
+      }
+    ],
+    "currentLocation": "City rooftops"
   },
   {
     "name": "Adult Dragon",
-    "firstAppearanceMs": 588000,
-    "lastAppearanceMs": 690000,
-    "relationships": ["Sintel"],
-    "knownFacts": [
-      { "knownAtMs": 588000, "fact": "The adult dragon lives in the cave" },
-      { "knownAtMs": 603000, "fact": "The adult dragon fights Sintel" },
-      { "knownAtMs": 624000, "fact": "The adult dragon recognizes Sintel" },
-      { "knownAtMs": 640000, "fact": "The adult dragon is Scales grown up" },
-      { "knownAtMs": 654000, "fact": "The adult dragon dies in Sintel's arms" }
+    "firstAppearanceMs": 468000,
+    "lastAppearanceMs": 640000,
+    "relationships": [
+      "Sintel"
     ],
-    "currentGoal": "Defend its lair",
-    "currentLocation": "Dragon's cave"
+    "knownFacts": [
+      {
+        "knownAtMs": 467900,
+        "fact": "An enormous dragon lies far across a crystal-lit cave"
+      },
+      {
+        "knownAtMs": 509900,
+        "fact": "It blasts a jet of fire across the cave"
+      },
+      {
+        "knownAtMs": 584900,
+        "fact": "It lies on the cave floor with red beneath it"
+      },
+      {
+        "knownAtMs": 622000,
+        "fact": "It is Scales, the little dragon from the rooftops, grown up"
+      }
+    ],
+    "currentLocation": "Crystal cave"
   }
 ]

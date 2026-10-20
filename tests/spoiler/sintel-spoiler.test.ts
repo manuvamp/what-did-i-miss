@@ -6,11 +6,20 @@ import { setAIProvider } from '../../backend/src/llm/provider';
 import { DeterministicProvider } from '../../backend/src/llm/DeterministicProvider';
 
 const contentId = 'sintel_001';
-// The twist: the adult dragon is Scales grown up. Reveal events:
-//   event_020 (dragon recognizes Sintel)  @ 624s, boundary 690s
-//   event_021 (Sintel realizes it's Scales) @ 640s, boundary 690s
-//   event_022/023 (cradles / sobs)        @ 654s/672s, boundary 690s
-const REVEAL_BOUNDARY = 690_000;
+// The twist: the fallen dragon in the cave is Scales, the little dragon from the
+// rooftops, grown up. The index was rebuilt from the frames of the film itself
+// (see content/sintel/ANALYSIS_NOTES.md). Reveal events:
+//   event_024 (journey images flash behind Sintel's face: the fallen dragon is Scales) @ 605.9s
+//   event_025 (Sintel reaches out an open hand toward the fallen dragon)               @ 608.9s
+// Both are gated behind spoilerBoundaryMs = 622s so recaps cannot surface them
+// before the reveal beat has finished playing.
+const REVEAL_BOUNDARY = 622_000;
+
+function expectNoReveal(text: string) {
+  for (const phrase of ['grown up', 'is scales', 'fallen dragon', 'struck down', 'open hand']) {
+    expect(text).not.toContain(phrase);
+  }
+}
 
 describe('Sintel spoiler safety', () => {
   const engine = new StoryEngine();
@@ -28,24 +37,42 @@ describe('Sintel spoiler safety', () => {
       windowEndMs: 300_000
     });
     const text = [recap.summary, ...recap.importantEvents, recap.importantClue?.text ?? ''].join(' ').toLowerCase();
-    expect(text).not.toContain('scales grown');
-    expect(text).not.toContain('recognizes sintel');
-    expect(text).not.toContain('realizes the dragon');
-    expect(text).not.toContain('cradles');
-    expect(text).not.toContain('sobs');
+    // Naming the little dragon "Scales" is fine (the film does); tying it to the
+    // cave dragon is the spoiler.
+    expectNoReveal(text);
     expect(recap.spoilerChecked).toBe(true);
   });
 
-  it('clues listing at 4:00 (240s) omits the late recognition clue', async () => {
+  it('recap and highlights at 10:15 (615s), in the cave just before the reveal, keep the twist hidden', async () => {
+    const service = new RecapService();
+    for (const windowMs of [120_000, 600_000]) {
+      const recap = await service.generateRecap({
+        contentId,
+        currentPositionMs: 615_000,
+        windowStartMs: 615_000 - windowMs,
+        windowEndMs: 615_000
+      });
+      const text = [
+        recap.summary,
+        ...recap.importantEvents,
+        recap.importantClue?.text ?? '',
+        ...(recap.highlights ?? []).map(h => h.caption)
+      ].join(' ').toLowerCase();
+      expectNoReveal(text);
+    }
+  });
+
+  it('clues listing at 4:00 (240s) omits later clues', async () => {
     const service = new QuestionService();
     const res = await service.answer({
       contentId,
       question: 'What clues do we know so far?',
       currentPositionMs: 240_000
     });
-    // clue_07 (dragon recognizes Sintel) is discovered at 624s — must not appear at 240s
-    expect(res.answer).not.toContain('Recognizes Sintel');
-    expect(res.answer).not.toContain('recognizes');
+    // clue_03 (a much larger dragon) is discovered at 283s and clue_07 (the reveal) at 605.9s
+    expect(res.answer).not.toContain('Larger Dragon');
+    expect(res.answer).not.toContain('Fallen Dragon');
+    expect(res.answer).not.toContain('grown up');
     expect(res.spoilerChecked).toBe(true);
   });
 
@@ -56,45 +83,47 @@ describe('Sintel spoiler safety', () => {
       endMs: 600_000,
       maxTimestampMs: 600_000
     });
-    expect(ctx.events.find(e => e.id === 'event_020')).toBeUndefined();
-    expect(ctx.events.find(e => e.id === 'event_021')).toBeUndefined();
-    expect(ctx.events.find(e => e.id === 'event_022')).toBeUndefined();
-    expect(ctx.events.find(e => e.id === 'event_023')).toBeUndefined();
+    expect(ctx.events.find(e => e.id === 'event_024')).toBeUndefined();
+    expect(ctx.events.find(e => e.id === 'event_025')).toBeUndefined();
+    // the events just before the reveal are still available
+    expect(ctx.events.find(e => e.id === 'event_023')).toBeDefined();
+    expect(ctx.clues.find(c => c.id === 'clue_07')).toBeUndefined();
   });
 
-  it('retrieveContext at 11:00 (660s) excludes the whole reveal sequence (boundary 690s)', async () => {
+  it('retrieveContext at 10:15 (615s) still excludes the reveal (boundary 622s)', async () => {
     const ctx = await engine.retrieveContext({
       contentId,
-      startMs: 600_000,
-      endMs: 660_000,
-      maxTimestampMs: 660_000
+      startMs: 560_000,
+      endMs: 615_000,
+      maxTimestampMs: 615_000
     });
-    // The fight and recognition are all gated behind spoilerBoundaryMs = 690s,
-    // so at 660s none of the final-act events are retrievable yet.
-    expect(ctx.events.find(e => e.id === 'event_019')).toBeUndefined();
-    expect(ctx.events.find(e => e.id === 'event_020')).toBeUndefined();
-    expect(ctx.events.find(e => e.id === 'event_021')).toBeUndefined();
+    // event_024 happens at 605.9s but is gated behind spoilerBoundaryMs = 622s
+    expect(ctx.events.find(e => e.id === 'event_024')).toBeUndefined();
+    expect(ctx.events.find(e => e.id === 'event_025')).toBeUndefined();
   });
 
-  it('retrieveContext at 11:35 (695s) includes the reveal', async () => {
+  it('retrieveContext at 10:25 (625s) includes the reveal', async () => {
     const ctx = await engine.retrieveContext({
       contentId,
-      startMs: 600_000,
-      endMs: 695_000,
-      maxTimestampMs: 695_000
+      startMs: 560_000,
+      endMs: 625_000,
+      maxTimestampMs: 625_000
     });
-    expect(ctx.events.find(e => e.id === 'event_021')).toBeDefined();
+    expect(REVEAL_BOUNDARY).toBeLessThanOrEqual(625_000);
+    expect(ctx.events.find(e => e.id === 'event_024')).toBeDefined();
+    expect(ctx.events.find(e => e.id === 'event_025')).toBeDefined();
   });
 
-  it('prior context at the fight links back to the early Scales bond', async () => {
+  it('prior context in the cave links back to the early little-dragon scenes', async () => {
     const ctx = await engine.retrieveContext({
       contentId,
-      startMs: 600_000,
-      endMs: 660_000,
-      maxTimestampMs: 660_000
+      startMs: 560_000,
+      endMs: 600_000,
+      maxTimestampMs: 600_000
     });
-    // The recap at the fight should surface the early Scales relationship
+    // Sintel's static relationship to "Scales" pulls the rooftop scenes back in
+    // without revealing anything about the adult dragon.
     const joined = ctx.priorContext.join(' ').toLowerCase();
-    expect(joined).toMatch(/scales|baby dragon|pets|bond/);
+    expect(joined).toMatch(/little dragon|winged creature/);
   });
 });

@@ -1,65 +1,96 @@
 [
   {
     "id": "clue_01",
-    "title": "Sintel's Injured Hand",
-    "description": "Sintel's hand is bandaged and bleeding from the start. The wound matters because it is how Scales first reaches her.",
-    "discoveredAtMs": 48000,
-    "relatedCharacters": ["Sintel"],
-    "relatedObjects": ["Bandaged hand"],
-    "status": "resolved"
+    "title": "Staff with a Round Engraved End",
+    "description": "After the attack, the old shaman takes a close interest in the staff Sintel carries.",
+    "discoveredAtMs": 54800,
+    "relatedCharacters": [
+      "Sintel",
+      "Shaman"
+    ],
+    "relatedObjects": [
+      "Staff",
+      "Engraved disc"
+    ],
+    "status": "partially_resolved"
   },
   {
     "id": "clue_02",
-    "title": "Scales Lives With the Shaman",
-    "description": "A baby dragon appears in the shaman's hut, comfortable around humans. It is not a wild creature.",
-    "discoveredAtMs": 144000,
-    "relatedCharacters": ["Scales", "Shaman"],
-    "relatedObjects": ["Baby dragon"],
-    "status": "resolved"
+    "title": "A Wounded Little Dragon",
+    "description": "Sintel's bond with the little dragon begins: she finds him wounded and nurses him back to health.",
+    "discoveredAtMs": 150900,
+    "relatedCharacters": [
+      "Sintel",
+      "Scales"
+    ],
+    "relatedObjects": [
+      "Little dragon"
+    ],
+    "status": "partially_resolved"
   },
   {
     "id": "clue_03",
-    "title": "The Shaman Hunts Dragons",
-    "description": "The shaman teaches Sintel to kill, and his hut is filled with dragon trophies: a large scale, crystals, a dragon figurine.",
-    "discoveredAtMs": 270000,
-    "relatedCharacters": ["Shaman", "Sintel"],
-    "relatedObjects": ["Dragon scale", "Crystal shelf", "Dragon figurine"],
-    "status": "resolved"
+    "title": "A Much Larger Dragon",
+    "description": "A huge dragon takes Scales from Sintel. Finding it becomes her whole quest.",
+    "discoveredAtMs": 283000,
+    "relatedCharacters": [
+      "Sintel",
+      "Large Dragon",
+      "Scales"
+    ],
+    "relatedObjects": [
+      "Little dragon"
+    ],
+    "status": "unresolved"
   },
   {
     "id": "clue_04",
-    "title": "The Map to the Dragon",
-    "description": "The shaman gives Sintel a forged sword and points to a destination on a map labelled 'Dragon's' territory.",
-    "discoveredAtMs": 363000,
-    "relatedCharacters": ["Shaman", "Sintel"],
-    "relatedObjects": ["Sword", "Map"],
-    "status": "resolved"
+    "title": "A Tree Engraved on a Disc",
+    "description": "An engraved disc shows a lone tree: the landmark that leads her to the dragon's lair.",
+    "discoveredAtMs": 438000,
+    "relatedCharacters": [
+      "Sintel"
+    ],
+    "relatedObjects": [
+      "Engraved disc",
+      "Tree emblem"
+    ],
+    "status": "partially_resolved"
   },
   {
     "id": "clue_05",
-    "title": "Scales Loves Sintel",
-    "description": "Scales rests its head on Sintel's shoulder, plays with her, and mourns when she leaves. The bond is real.",
-    "discoveredAtMs": 288000,
-    "relatedCharacters": ["Sintel", "Scales"],
-    "relatedObjects": ["Baby dragon"],
-    "status": "resolved"
+    "title": "An Enormous Dragon in the Cave",
+    "description": "The great dragon is real, and Sintel has finally found where it lives.",
+    "discoveredAtMs": 468000,
+    "relatedCharacters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
+    "relatedObjects": [],
+    "status": "partially_resolved"
   },
   {
     "id": "clue_06",
-    "title": "A Baby-Dragon Image in the Lair",
-    "description": "Inside the dragon's cave, a shadow-puppet vision of a baby dragon appears on the wall — as if the lair remembers its young.",
-    "discoveredAtMs": 522000,
-    "relatedCharacters": ["Adult Dragon"],
-    "relatedObjects": ["Shadow-puppet vision"],
+    "title": "A Young Dragon Asleep on a Rock",
+    "description": "A young dragon sleeps in the same cave as the great dragon.",
+    "discoveredAtMs": 505000,
+    "relatedCharacters": [
+      "Sintel"
+    ],
+    "relatedObjects": [],
     "status": "unresolved"
   },
   {
     "id": "clue_07",
-    "title": "The Dragon Recognizes Sintel",
-    "description": "Mid-fight, the adult dragon stops, catches her blade, and looks at Sintel with unmistakable recognition.",
-    "discoveredAtMs": 690000,
-    "relatedCharacters": ["Sintel", "Adult Dragon"],
-    "relatedObjects": ["Glowing sword"],
+    "title": "The Fallen Dragon Is Scales",
+    "description": "The dragon Sintel fought is Scales, grown up. Her long search ends with her striking down the friend she set out to save.",
+    "discoveredAtMs": 622000,
+    "relatedCharacters": [
+      "Sintel",
+      "Scales",
+      "Adult Dragon"
+    ],
+    "relatedObjects": [],
     "status": "resolved"
   }
 ]

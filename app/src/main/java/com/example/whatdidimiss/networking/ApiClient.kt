@@ -22,7 +22,16 @@ data class RecapResponse(
     @SerializedName("importantClue") val importantClue: ImportantClue?,
     @SerializedName("relevantEarlierContext") val relevantEarlierContext: List<String>,
     @SerializedName("characters") val characters: List<String>,
-    @SerializedName("spoilerChecked") val spoilerChecked: Boolean
+    @SerializedName("spoilerChecked") val spoilerChecked: Boolean,
+    @SerializedName("highlights") val highlights: List<Highlight>? = null
+)
+
+/** One key moment for the visual recap: a real frame plus a subtitle-style caption. */
+data class Highlight(
+    @SerializedName("timestampMs") val timestampMs: Long,
+    @SerializedName("sceneTitle") val sceneTitle: String,
+    @SerializedName("caption") val caption: String,
+    @SerializedName("frameUrl") val frameUrl: String?
 )
 
 data class Window(

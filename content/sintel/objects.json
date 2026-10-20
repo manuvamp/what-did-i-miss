@@ -1,54 +1,139 @@
 [
   {
     "id": "object_staff",
-    "name": "Glowing staff",
-    "firstSeenMs": 12000,
+    "name": "Staff",
+    "firstSeenMs": 0,
     "stateChanges": [
-      { "timestampMs": 12000, "description": "Sintel carries a glowing staff through the snow" }
+      {
+        "timestampMs": 0,
+        "description": "Carried by a hooded traveller in the snow"
+      },
+      {
+        "timestampMs": 44900,
+        "description": "A long pole lies across Sintel as she lies in the snow"
+      },
+      {
+        "timestampMs": 54800,
+        "description": "A staff ending in a round engraved cap lies in the snow"
+      },
+      {
+        "timestampMs": 77900,
+        "description": "An old man examines a staff in the tent"
+      },
+      {
+        "timestampMs": 383900,
+        "description": "A long staff lies beside a figure in the snow"
+      },
+      {
+        "timestampMs": 445000,
+        "description": "Sintel carries a staff with a bladed head on a dark hillside"
+      }
     ]
   },
   {
-    "id": "object_bandage",
-    "name": "Bandaged hand",
-    "firstSeenMs": 48000,
+    "id": "object_disc",
+    "name": "Engraved disc",
+    "firstSeenMs": 54800,
     "stateChanges": [
-      { "timestampMs": 48000, "description": "Sintel's hand is bandaged and bleeding" },
-      { "timestampMs": 240000, "description": "Scales mouths Sintel's bandaged hand curiously" }
+      {
+        "timestampMs": 54800,
+        "description": "A round engraved metal cap at the end of the staff"
+      },
+      {
+        "timestampMs": 79500,
+        "description": "The old man handles it in the tent"
+      },
+      {
+        "timestampMs": 436000,
+        "description": "Fingers rest on a round disc engraved with rings of symbols; a tree is engraved in its centre"
+      }
     ]
   },
   {
     "id": "object_knife",
     "name": "Knife",
-    "firstSeenMs": 204000,
+    "firstSeenMs": 21000,
     "stateChanges": [
-      { "timestampMs": 204000, "description": "The shaman demonstrates killing with a knife" }
+      {
+        "timestampMs": 21000,
+        "description": "Sintel holds a knife while grappling with the bald man"
+      },
+      {
+        "timestampMs": 575900,
+        "description": "Sintel grips a dagger in both hands in the cave"
+      }
     ]
   },
   {
-    "id": "object_sword",
-    "name": "Sword",
-    "firstSeenMs": 345000,
+    "id": "object_bowl",
+    "name": "Bowl of pale liquid",
+    "firstSeenMs": 94000,
     "stateChanges": [
-      { "timestampMs": 345000, "description": "The shaman forges and gives Sintel a sword" },
-      { "timestampMs": 603000, "description": "Sintel strikes the dragon with the sword" },
-      { "timestampMs": 624000, "description": "The dragon catches the sword in its jaws" }
+      {
+        "timestampMs": 94000,
+        "description": "Sintel holds a red bowl in the tent"
+      },
+      {
+        "timestampMs": 102000,
+        "description": "Close view of a bowl of pale liquid in two hands"
+      }
     ]
   },
   {
-    "id": "object_map",
-    "name": "Map",
-    "firstSeenMs": 363000,
+    "id": "object_little_dragon",
+    "name": "Little dragon",
+    "firstSeenMs": 150900,
     "stateChanges": [
-      { "timestampMs": 363000, "description": "The shaman shows Sintel a map to the dragon's lair" },
-      { "timestampMs": 450000, "description": "Sintel consults the map while crossing the mountains" }
+      {
+        "timestampMs": 150900,
+        "description": "Lies on a cobbled rooftop with a bloodied wing"
+      },
+      {
+        "timestampMs": 179900,
+        "description": "Held in Sintel's lap with a hand on its head"
+      },
+      {
+        "timestampMs": 218900,
+        "description": "Dashes down a market alley"
+      },
+      {
+        "timestampMs": 272900,
+        "description": "Flies across the sunset sky"
+      }
     ]
   },
   {
-    "id": "object_scale",
-    "name": "Dragon scale",
-    "firstSeenMs": 270000,
+    "id": "object_tree",
+    "name": "Tree emblem",
+    "firstSeenMs": 61000,
     "stateChanges": [
-      { "timestampMs": 270000, "description": "A large dragon scale sits among the shaman's trophies" }
+      {
+        "timestampMs": 61000,
+        "description": "A tree emblem in the title logo"
+      },
+      {
+        "timestampMs": 438000,
+        "description": "A tree is engraved on the disc"
+      },
+      {
+        "timestampMs": 442500,
+        "description": "A lone tree on a dark hillside"
+      },
+      {
+        "timestampMs": 655000,
+        "description": "A vast tree stands over a misty landscape"
+      }
+    ]
+  },
+  {
+    "id": "object_snowdrops",
+    "name": "Snowdrop flowers",
+    "firstSeenMs": 683000,
+    "stateChanges": [
+      {
+        "timestampMs": 683000,
+        "description": "White snowdrop flowers in the foreground as Sintel walks away"
+      }
     ]
   }
 ]

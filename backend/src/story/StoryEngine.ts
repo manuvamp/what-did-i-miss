@@ -8,7 +8,9 @@ import {
   Clue,
   CharacterStateFile,
   StoryObject,
-  TimestampedStoryState
+  TimestampedStoryState,
+  pickStoryBeats,
+  storyLine
 } from './types';
 
 export interface RetrievalContext {
@@ -29,6 +31,14 @@ export interface RetrievedContext {
   objects: StoryObject[];
   storyState: TimestampedStoryState | null;
   frames: FrameRef[];
+}
+
+export interface Highlight {
+  timestampMs: number;
+  sceneTitle: string;
+  caption: string;
+  /** Relative URL served by the backend, e.g. /frames/sintel/seq_0048.jpg */
+  frameUrl: string | null;
 }
 
 interface FrameRef {
@@ -240,6 +250,55 @@ export class StoryEngine {
     }
 
     return picked.slice(0, 6);
+  }
+
+  /**
+   * Up to `limit` key moments in [startMs, endMs] for the visual recap, in
+   * story order, each paired with a real frame from the film. Built on
+   * retrieveContext, so it inherits the same maxTimestampMs spoiler filter.
+   */
+  async selectHighlights(params: RetrievalContext, limit = 3): Promise<Highlight[]> {
+    const { contentId, startMs, maxTimestampMs } = params;
+    const idx = this.load(contentId);
+    const context = await this.retrieveContext(params);
+    const effectiveEnd = Math.min(params.endMs, maxTimestampMs);
+    const slug = contentSlug(contentId);
+    const eligibleFrames = idx.frames.filter(f => f.timestampMs <= maxTimestampMs);
+
+    const frameUrlNear = (ms: number): string | null => {
+      // Frames are sampled every few seconds; aim just after the moment starts.
+      const f = nearestFrame(eligibleFrames, Math.min(ms + 1500, maxTimestampMs), []);
+      return f ? `/frames/${slug}/${path.basename(f.path)}` : null;
+    };
+
+    const moments: Highlight[] = pickStoryBeats(context.events, startMs, effectiveEnd, limit)
+      .map(e => ({
+        timestampMs: e.timestampMs,
+        sceneTitle: sceneTitleFor(idx, e.id, e.timestampMs),
+        caption: storyLine(e),
+        frameUrl: frameUrlNear(e.timestampMs)
+      }));
+
+    // Too few indexed events in the window: fill with finished scenes in it
+    // (unfinished scenes are skipped because their summary can run ahead).
+    if (moments.length < limit) {
+      const scenes = idx.scenes.filter(
+        s => s.endMs > startMs && s.startMs < effectiveEnd && s.endMs <= maxTimestampMs
+      );
+      for (const scene of scenes) {
+        if (moments.length >= limit) break;
+        if (moments.some(m => m.timestampMs >= scene.startMs && m.timestampMs < scene.endMs)) continue;
+        const at = Math.max(scene.startMs, startMs);
+        moments.push({
+          timestampMs: at,
+          sceneTitle: scene.title,
+          caption: scene.summary.split(/(?<=\.)\s/)[0],
+          frameUrl: frameUrlNear(at)
+        });
+      }
+    }
+
+    return moments.sort((a, b) => a.timestampMs - b.timestampMs);
   }
 
   getMetadata(contentId: string): any | null {

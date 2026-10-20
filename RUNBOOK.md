@@ -1,175 +1,123 @@
-# Runbook — connecting everything
+# Runbook
 
-**Status tracker updated 2026-10-03.**
+How to run everything and check it works. The README has the short version; this adds the verification checklist and troubleshooting. Last reviewed 2026-10-20.
 
-## 0. What's done (✅ vs ⬜)
+## Status
 
-| Phase | Status | Notes |
-|-------|--------|-------|
-| 0 Housekeeping | ✅ | git init'd, `.gitignore` written, 3 commits, backend re-verified |
-| 0.3 Backend re-verify | ✅ | `tsc --noEmit` clean, **23/23 vitest**, live `/api/recap` smoke test OK |
-| 0.4 Spoiler spot-check @60s/330s/480s | ✅ | no leaks; boundary exact at 481s vs 483s |
-| 1 Toolchain (Android Studio) | ⬜ [HUMAN] | nothing installable from CLI here |
-| 2 Compile app | ⬜ [HUMAN unblock] | **pre-build blockers FIXED statically** (icon, wrapper jar, proguard, defaultConfig merge, networkSecurityConfig). Ready for first `gradlew assembleDebug`. |
-| 3 Device (Fire TV / emulator) | ⬜ [HUMAN] | `adb devices` empty; enable Developer Options on TV or create AVD |
-| 4 Demo content | ⬜ [HUMAN 4A / partial 4B] | no ffmpeg here; bipbop placeholder works for plumbing |
-| 5 On-device verification | ⬜ blocked on 3 | 7-point checklist below |
-| 6 AI upgrade | ⬜ optional | `AI_PROVIDER=anthropic|bedrock` after deterministic works on device |
-| 7 Deliverables | ⬜ [HUMAN] | record on device, push to GitHub, write submission |
+| Piece | State |
+|-------|-------|
+| Backend (`backend/`) | Works. `npx vitest run`: 30 tests in 4 files pass. `tsc --noEmit` clean. |
+| Android app (`app/`) | Compiles and runs on the Android TV emulator (API 33, x86) since 2026-10-14. |
+| Physical Fire TV | **Not yet run on a Fire TV stick.** The same APK targets Fire OS; the steps in section 4 are untested on hardware. |
+| Anthropic / Bedrock providers | Wired behind the provider interface, not run against live keys. |
 
-## 1. Prereqs to install (one-time) [HUMAN]
+## 1. Prerequisites
 
 | Tool | Why |
 |------|-----|
-| Android Studio (Hedgehog+) | JDK 17 + Android SDK 34 + emulator images |
-| `adb` | already installed (`platform-tools`) |
-| ffmpeg | for packaging the real demo video (Phase 4A) |
+| Node.js 20+ | backend |
+| JDK 17 | Gradle / Android build |
+| Android SDK, platform 34, with `adb` and the emulator | build and run the app |
+| An Android TV AVD named `tv1080` (the demo used API 33, x86) | the demo script boots this name |
+| ffmpeg | prepare the HLS video and the frame images |
 
-`local.properties` is **pre-created** with `sdk.dir=C:\\Users\\cocat\\AppData\\Local\\Android\\Sdk`. If your SDK is elsewhere, edit it.
+Copy `local.properties.template` to `local.properties` and set `sdk.dir` to your SDK. The file is gitignored.
 
-## 2. Run the backend
+## 2. Backend
 
 ```bash
 cd backend
-npm install        # done
-npx tsx src/server.ts
+npm install
+npx tsx src/server.ts            # PORT env var, default 3000
 ```
 
-Serves on `http://localhost:3000`. From a Fire TV emulator the app reaches it as `http://10.0.2.2:3000`; from a **physical Fire TV**, set `BACKEND_URL` in `app/build.gradle.kts` to the machine's LAN IP (e.g. `http://192.168.1.50:3000`) and run the backend on `0.0.0.0`. Open the firewall once (admin shell):
+The demo uses port 3100 (`set PORT=3100` on Windows before starting). Check `http://localhost:3100/health`: it reports the active provider and content directory. The backend listens on all interfaces, so a Fire TV on the same network can reach it if the PC firewall allows the port (Windows, admin shell):
 
 ```
-netsh advfirewall firewall add rule name="recap3000" dir=in action=allow protocol=TCP localport=3000
+netsh advfirewall firewall add rule name="wdim-backend" dir=in action=allow protocol=TCP localport=3100
 ```
 
-To enable real AI recaps (optional — deterministic mode already works):
+AI providers are optional. The default `deterministic` provider needs no keys.
 
 ```bash
-# Anthropic direct
-set ANTHROPIC_API_KEY=... && set AI_PROVIDER=anthropic
+# Anthropic
+set AI_PROVIDER=anthropic && set ANTHROPIC_API_KEY=...        # optional: ANTHROPIC_MODEL
 
-# or Amazon Bedrock (hackathon AWS Builder mini-challenge)
-set AI_PROVIDER=bedrock && set AWS_REGION=us-east-1
+# Amazon Bedrock
+set AI_PROVIDER=bedrock && set AWS_REGION=us-east-1           # optional: BEDROCK_MODEL_ID, plus AWS credentials
 ```
 
-## 3. Build & install the app
+The backend reads environment variables only; it does not load `.env`. If a provider fails, the backend falls back to the deterministic one.
+
+## 3. Video and frames
+
+Neither the film nor the frame images are in the repo. Get Sintel from durian.blender.org (CC BY 3.0). The story index is timed to a copy that is 712.96 s long, 1920x818, with no audio; check with `ffprobe`. Then, from the repo root (full commands with explanations are in the README):
 
 ```bash
-# from what-did-i-miss/ — local.properties already set
-gradlew.bat assembleDebug
-adb connect <FIRE_TV_IP>:5555        # physical device (after enabling ADB debugging on the TV)
+# 720p-wide Main-profile HLS (what the emulator plays)
+mkdir -p dist/hls/sintel-720
+ffmpeg -i sintel.mp4 -vf scale=1280:544 -c:v libx264 -profile:v main -pix_fmt yuv420p \
+  -g 144 -keyint_min 144 -sc_threshold 0 -f hls -hls_time 6 -hls_playlist_type vod \
+  -hls_segment_filename dist/hls/sintel-720/seg_%03d.ts dist/hls/sintel-720/index.m3u8
+
+# Full-resolution copy
+mkdir -p dist/hls/sintel
+ffmpeg -i sintel.mp4 -c:v libx264 -pix_fmt yuv420p -f hls -hls_time 6 -hls_playlist_type vod \
+  -hls_segment_filename dist/hls/sintel/seg_%03d.ts dist/hls/sintel/index.m3u8
+
+# Story frames, one every 3 s
+ffmpeg -i sintel.mp4 -vf "fps=1/3,scale=640:-1" -q:v 3 content/sintel/frames/seq_%04d.jpg
+```
+
+The backend serves `dist/hls/<name>/` at `/hls/<name>/` and frames at `/frames/sintel/<file>.jpg`.
+
+## 4. Run on the emulator or a Fire TV
+
+One command (boots the AVD, starts the backend on 3100, installs and launches the app):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\run_demo.ps1 [-Build]
+```
+
+`run_demo.ps1` expects `jdk17` and `android-sdk` inside `%USERPROFILE%\dev`; set `WDIM_DEV` to point elsewhere. `-Build` runs `gradlew.bat assembleDebug -PbackendUrl=http://10.0.2.2:3100 -PstreamPath=sintel-720`.
+
+By hand:
+
+```bat
+gradlew.bat assembleDebug -PbackendUrl=http://10.0.2.2:3100 -PstreamPath=sintel-720
 adb install -r app\build\outputs\apk\debug\app-debug.apk
+adb shell am start -n com.example.whatdidimiss/.MainActivity
 ```
 
-On a physical Fire TV, update `BACKEND_URL`/`STREAM_URL` in `app/build.gradle.kts` first.
+Real Fire TV (untested on hardware):
 
-## 4. Point the player at "The Last Signal"
+1. Enable ADB debugging: Settings, My Fire TV, Developer Options.
+2. `adb connect <fire-tv-ip>:5555`
+3. Add the PC's LAN IP as a `<domain>` in `app/src/main/res/xml/network_security_config.xml`. The app only allows cleartext HTTP to `10.0.2.2` and `localhost`.
+4. Build with `-PbackendUrl=http://<pc-lan-ip>:3100` (and `-PstreamPath=sintel` or `sintel-720`), then `adb install -r` the APK.
 
-The app currently plays the public bipbop HLS (works, has WebVTT subtitles, ~10min) for plumbing verification. To use the real demo:
+## 5. Verify on the device
 
-```bash
-# package the produced video into HLS (needs ffmpeg)
-scripts\package_video.sh movie.mp4 dist\hls last_signal
+Sintel timestamps are film time.
 
-# serve locally for a demo (simplest): 
-npx http-server dist/hls -p 8080 --cors
-# then set STREAM_URL to http://10.0.2.2:8080/last_signal_master.m3u8
-
-# OR upload to S3 + CloudFront and use https://<distribution>.cloudfront.net/last-signal/last_signal_master.m3u8
-```
-
-The story index (`content/last-signal/*.json`) is complete for the 9-minute, 10-scene film; keep the video edit aligned with the cue timestamps. **Phase 4B alternative:** keep bipbop, retime `scenes.json`/`events.json`/`clues.json` to bipbop's actual beats (it has no mystery plot, so this only proves plumbing, not product value — prefer 4A).
-
-## 5. Verify on device (the "Definition of Done")
-
-1. Video plays, subtitles sync (MENU key toggles debug overlay: title/position/duration/scene)
-2. Skip forward >10s, then press **WHAT DID I MISS?** — recap prioritizes the skipped range
-3. Recap overlay shows missed time + summary + IMPORTANT clue, with follow-up chips
-4. `What clues do we know?` at 5:30 lists 5 clues and never mentions the 7:00 reveal or 8:00 signal
-5. **Watch Missed Part** seeks exactly to `missedRange.startMs` and resumes
-6. **Continue Watching** resumes from the exact paused position
-7. D-pad moves focus between recap buttons and chips; BACK dismisses the overlay
-
-**Server-side spoiler verification (already done via curl):** see §0 — 60s/330s/480s all clean, boundary exact.
+1. The film plays. MENU toggles the debug overlay (title, position, duration, scene).
+2. Around 2:00, press FF several times to reach about 6:30, then press **M** (or INFO, or the on-screen button). The recap card says how much you missed and summarises the skipped range, not just the last 5 minutes. Repeated FF presses count as one skip.
+3. The card shows the missed time, a summary and an IMPORTANT line, with the follow-up chips and Last 2 / 5 / 10 min buttons.
+4. At about 6:30, **What clues do we know?** lists three clues (staff with a round engraved end, a wounded little dragon, a much larger dragon). It does not mention the tree on the disc (7:18), the enormous dragon in the cave (7:48) or anything later.
+5. **Watch Missed Part** seeks to the start of the recapped range and plays.
+6. **Continue Watching** resumes from the paused position.
+7. Press **2**, **5** or **0**: a montage of up to three key moments plays with real frames. OK or right goes to the next one, BACK jumps to the text recap.
+8. The D-pad moves focus between the recap buttons and chips; BACK dismisses the card.
+9. Spoiler boundary: at about 10:15, in the cave just before the twist, a recap or answer never says the fallen dragon is Scales. At about 10:30 it may.
 
 ## 6. Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
-| App shows "offline summary" | Backend unreachable — check `BACKEND_URL`, firewall rule, or emulator `10.0.2.2` |
-| Black video but recap works | STREAM_URL invalid — bipbop is known-good; check codec support or CloudFront CORS |
-| Recap empty for late timestamps | bipbop length ≠ 9-min story index — that's expected until Phase 4A |
-| `gradlew` fails immediately | `gradle-wrapper.jar` missing — it's committed, run `git status` to confirm |
-| AAPT "resource not found ic_launcher" | stale build — `gradlew clean` then rebuild (icon is committed) |
-
-## 1. Prereqs to install (one-time)
-
-| Tool | Why |
-|------|-----|
-| Android Studio (Hedgehog+) | JDK 17 + Android SDK 34 + emulator images |
-| `adb` | already installed (`platform-tools`) |
-| ffmpeg | for packaging the real demo video |
-
-## 2. Run the backend
-
-```bash
-cd backend
-npm install        # done
-npx tsx src/server.ts
-```
-
-Serves on `http://localhost:3000`. From a Fire TV emulator the app reaches it as `http://10.0.2.2:3000`; from a **physical Fire TV**, set `BACKEND_URL` in `app/build.gradle.kts` to the machine's LAN IP (e.g. `http://192.168.1.50:3000`) and run the backend on `0.0.0.0`.
-
-To enable real AI recaps (optional — deterministic mode already works):
-
-```bash
-# Anthropic direct
-set ANTHROPIC_API_KEY=... && set AI_PROVIDER=anthropic
-
-# or Amazon Bedrock (hackathon AWS Builder mini-challenge)
-set AI_PROVIDER=bedrock && set AWS_REGION=us-east-1
-# credentials via AWS profile / env
-```
-
-## 3. Build & install the app
-
-```bash
-# from what-did-i-miss/ — requires Android Studio installed (provides SDK at %LOCALAPPDATA%\Android\Sdk)
-echo sdk.dir=%LOCALAPPDATA%\Android\Sdk > local.properties
-gradlew.bat assembleDebug
-adb connect <FIRE_TV_IP>:5555        # physical device (enable ADB debugging on the TV)
-adb install -r app\build\outputs\apk\debug\app-debug.apk
-```
-
-On a physical Fire TV, update `BACKEND_URL`/`STREAM_URL` in `app/build.gradle.kts` first.
-
-## 4. Point the player at "The Last Signal"
-
-The app currently plays a public test HLS (bipbop) for plumbing verification. To use the real demo:
-
-```bash
-# package the produced video into HLS
-scripts\package_video.sh movie.mp4 dist\hls last_signal
-
-# upload to S3 + serve through CloudFront, then set STREAM_URL to:
-# https://<distribution>.cloudfront.net/last-signal/last_signal_master.m3u8
-```
-
-The story index (`content/last-signal/*.json`) is already complete for this 9-minute, 10-scene film; keep the video edit aligned with the cue timestamps.
-
-## 5. Verify on device (the "Definition of Done")
-
-1. Video plays, subtitles sync (menu key toggles the debug overlay: title/position/duration/scene)
-2. Skip forward >10s, then press **WHAT DID I MISS?** — the recap should prioritize the skipped range, not just "last 5 minutes"
-3. Recap overlay shows missed time + summary + IMPORTANT clue, with follow-up chips
-4. `What clues do we know?` at 5:30 lists 5 clues and never mentions the 7:00 reveal or the 8:00 signal
-5. **Watch Missed Part** seeks exactly to `missedRange.startMs` and resumes
-6. **Continue Watching** resumes from the exact paused position
-7. D-pad moves focus between recap buttons and chips; BACK dismisses the overlay
-
-## 6. Troubleshooting
-
-| Symptom | Fix |
-|---------|-----|
-| App shows "offline summary" | Backend unreachable — check `BACKEND_URL`, LAN firewall, or emulator `10.0.2.2` |
-| Black video but recap works | STREAM_URL invalid for the device — verify with `adb shell am start -a android.intent.action.VIEW -d <url>` in a browser-capable app, or check codec support |
-| Recap empty for late timestamps | The bundled test stream is longer/shorter than the 9-minute story index — use the real packaged film |
+| App shows "offline summary" | The backend is unreachable. Check the port, `BACKEND_URL` the APK was built with, the firewall rule, and that the emulator uses `10.0.2.2`. On a real device, check the cleartext domain list (section 4). Note the offline summary is not spoiler-checked (see README). |
+| Emulator crashes or shows a black screen on play | The emulator's H.264 decoder cannot play the 1080p High-profile stream. Build with `-PstreamPath=sintel-720`. |
+| Visual recap shows no pictures | The frame images are missing. Generate them (section 3). |
+| Every recap request fails with 400 | The backend requires `currentPositionMs >= windowEndMs`. The app sends the larger of the two; if you call the API by hand, do the same. |
+| Edits to the backend seem to have no effect | A stale `node` process is still listening on the port. Find it with `netstat -ano \| findstr :3100` and stop it. |
+| UI crawls and screenshots lag behind the emulator | The host is short on RAM. Close other programs and restart the emulator. |
+| `gradlew` fails with "SDK location not found" | Create `local.properties` with `sdk.dir` (section 1). |

@@ -22,6 +22,16 @@ app.use('/hls', express.static(hlsDir, {
   }
 }));
 
+// Story-index keyframes for the visual recap: /frames/<slug>/<file>.jpg
+app.get('/frames/:slug/:file', (req, res) => {
+  const slug = path.basename(req.params.slug);
+  const file = path.basename(req.params.file);
+  if (!file.endsWith('.jpg')) return res.status(404).end();
+  res.sendFile(path.join(config.contentDir, slug, 'frames', file), err => {
+    if (err && !res.headersSent) res.status(404).end();
+  });
+});
+
 // Request logging with latency (no raw dialogue)
 app.use((req, res, next) => {
   const start = Date.now();

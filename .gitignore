@@ -25,6 +25,7 @@ dist/hls/
 
 # Extracted frame imagery (large, regenerable from the video)
 content/*/frames/*.jpg
+!content/sintel/frames/*.jpg
 content/*/sheets/*.jpg
 content/*/accuracy/*.jpg
 content/*/filters/

@@ -1,232 +1,402 @@
 [
   {
     "id": "event_001",
-    "timestampMs": 15000,
+    "timestampMs": 2900,
     "type": "character_action",
-    "description": "Sintel walks alone through a misty snowscape carrying a glowing staff.",
-    "characters": ["Sintel"],
-    "objects": ["Glowing staff"],
-    "importance": 0.5,
-    "spoilerBoundaryMs": 48000
+    "description": "Sintel, hooded against the cold, is alone in a white snowy landscape with a staff, one hand raised to her face.",
+    "story": "Alone in a frozen wasteland, Sintel pushes on through the snow.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [
+      "Staff"
+    ],
+    "importance": 0.4,
+    "spoilerBoundaryMs": 8900
   },
   {
     "id": "event_002",
-    "timestampMs": 48000,
-    "type": "clue",
-    "description": "Close-up of Sintel's bandaged, bleeding hand.",
-    "characters": ["Sintel"],
-    "objects": ["Bandaged hand"],
-    "importance": 0.6,
-    "spoilerBoundaryMs": 120000
+    "timestampMs": 17900,
+    "type": "character_action",
+    "description": "A bald, bearded man attacks Sintel in the snow and the two grapple on the slope.",
+    "story": "A stranger ambushes Sintel in the snow and they fight.",
+    "characters": [
+      "Sintel",
+      "Bald Man"
+    ],
+    "objects": [],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 23900
   },
   {
     "id": "event_003",
-    "timestampMs": 78000,
+    "timestampMs": 44900,
     "type": "character_action",
-    "description": "Sintel collapses exhausted in the snow during a blizzard.",
-    "characters": ["Sintel"],
-    "objects": [],
-    "importance": 0.65,
-    "spoilerBoundaryMs": 120000
+    "description": "Sintel ends up lying on her back in the snow, a long pole across her body.",
+    "story": "The fight leaves Sintel collapsed in the snow.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [
+      "Staff"
+    ],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 50900
   },
   {
     "id": "event_004",
-    "timestampMs": 123000,
-    "type": "character_action",
-    "description": "The shaman opens his door and takes Sintel in from the cold.",
-    "characters": ["Sintel", "Shaman"],
-    "objects": [],
-    "importance": 0.7,
-    "spoilerBoundaryMs": 141000
+    "timestampMs": 59900,
+    "type": "location_change",
+    "description": "The title SINTEL appears over a snowy mountain, with a tiny figure walking at the bottom left.",
+    "story": "SINTEL",
+    "characters": [],
+    "objects": [
+      "Tree emblem"
+    ],
+    "importance": 0.2,
+    "spoilerBoundaryMs": 65900
   },
   {
     "id": "event_005",
-    "timestampMs": 144000,
-    "type": "clue",
-    "description": "A small red-scaled baby dragon appears under the fireplace and nudges Sintel's hand.",
-    "characters": ["Sintel", "Scales"],
-    "objects": ["Baby dragon"],
-    "importance": 0.85,
-    "spoilerBoundaryMs": 186000
+    "timestampMs": 77900,
+    "type": "character_action",
+    "description": "In a firelit tent, an old man with a gray beard examines a staff that ends in a round metal cap.",
+    "story": "In an old shaman's firelit tent, he studies the staff she carries.",
+    "characters": [
+      "Shaman"
+    ],
+    "objects": [
+      "Staff",
+      "Engraved disc"
+    ],
+    "importance": 0.5,
+    "spoilerBoundaryMs": 83900
   },
   {
     "id": "event_006",
-    "timestampMs": 168000,
-    "type": "relationship_change",
-    "description": "Sintel smiles and gently pets the baby dragon, Scales.",
-    "characters": ["Sintel", "Scales"],
-    "objects": ["Baby dragon"],
-    "importance": 0.8,
-    "spoilerBoundaryMs": 186000
+    "timestampMs": 119900,
+    "type": "location_change",
+    "description": "A wide view over a vast city of crowded rooftops under a hazy sky.",
+    "story": "Her story goes back to a city of rooftops.",
+    "characters": [],
+    "objects": [],
+    "importance": 0.3,
+    "spoilerBoundaryMs": 125900
   },
   {
     "id": "event_007",
-    "timestampMs": 204000,
+    "timestampMs": 149900,
     "type": "clue",
-    "description": "The shaman makes a throat-slashing gesture and shows Sintel how to kill with a knife.",
-    "characters": ["Sintel", "Shaman"],
-    "objects": ["Knife"],
+    "description": "Sintel finds a little winged creature on a cobbled rooftop, one of its wings bloodied.",
+    "story": "On a rooftop, Sintel finds a baby dragon with a wounded wing.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "objects": [
+      "Little dragon"
+    ],
     "importance": 0.8,
-    "spoilerBoundaryMs": 234000
+    "spoilerBoundaryMs": 155900
   },
   {
     "id": "event_008",
-    "timestampMs": 240000,
+    "timestampMs": 167900,
     "type": "relationship_change",
-    "description": "Scales rests its chin on Sintel's shoulder by the fire, then mouths her bandage curiously.",
-    "characters": ["Sintel", "Scales"],
-    "objects": ["Bandaged hand"],
-    "importance": 0.75,
-    "spoilerBoundaryMs": 282000
+    "description": "Sintel holds out her hand to the injured little dragon, which looks at it.",
+    "story": "Wary at first, the little dragon lets her reach out to it.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "objects": [
+      "Little dragon"
+    ],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 173900
   },
   {
     "id": "event_009",
-    "timestampMs": 270000,
-    "type": "clue",
-    "description": "Sintel notices the shaman's hut is full of dragon trophies: a large dragon scale, crystals, a dragon figurine.",
-    "characters": ["Sintel"],
-    "objects": ["Dragon scale", "Crystal shelf", "Dragon figurine"],
+    "timestampMs": 179900,
+    "type": "relationship_change",
+    "description": "Sintel holds the little dragon in her lap with a hand on its head; blood is visible near its wing.",
+    "story": "Sintel nurses the wounded baby dragon. She calls him Scales.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "objects": [
+      "Little dragon"
+    ],
     "importance": 0.8,
-    "spoilerBoundaryMs": 282000
+    "spoilerBoundaryMs": 185900
   },
   {
     "id": "event_010",
-    "timestampMs": 288000,
-    "type": "relationship_change",
-    "description": "Sintel and Scales play-wrestle joyfully; the lizard licks her face.",
-    "characters": ["Sintel", "Scales"],
-    "objects": ["Baby dragon"],
-    "importance": 0.7,
-    "spoilerBoundaryMs": 330000
+    "timestampMs": 218900,
+    "type": "character_action",
+    "description": "The little dragon dashes down a market alley, with people hurrying behind it.",
+    "story": "Healed, Scales grows bold, darting through the busy market.",
+    "characters": [
+      "Scales"
+    ],
+    "objects": [
+      "Little dragon"
+    ],
+    "importance": 0.5,
+    "spoilerBoundaryMs": 224900
   },
   {
     "id": "event_011",
-    "timestampMs": 345000,
-    "type": "object_change",
-    "description": "The shaman forges and quenches a blade, then presents the finished sword to Sintel.",
-    "characters": ["Sintel", "Shaman"],
-    "objects": ["Sword"],
-    "importance": 0.85,
-    "spoilerBoundaryMs": 378000
+    "timestampMs": 272900,
+    "type": "character_action",
+    "description": "Sintel stands on a high rooftop at sunset watching a little dragon and a red bird fly across the sky.",
+    "story": "At sunset, Sintel watches Scales learn to fly.",
+    "characters": [
+      "Sintel",
+      "Scales"
+    ],
+    "objects": [
+      "Little dragon"
+    ],
+    "importance": 0.5,
+    "spoilerBoundaryMs": 278900
   },
   {
     "id": "event_012",
-    "timestampMs": 363000,
-    "type": "clue",
-    "description": "The shaman shows Sintel a map and points to a destination marked 'Dragon's' territory.",
-    "characters": ["Sintel", "Shaman"],
-    "objects": ["Map"],
-    "importance": 0.8,
-    "spoilerBoundaryMs": 378000
+    "timestampMs": 281900,
+    "type": "character_action",
+    "description": "A much larger dragon with a long tail flies in near the little dragon above the rooftops.",
+    "story": "Then a huge dragon swoops out of the sky toward Scales.",
+    "characters": [
+      "Scales",
+      "Large Dragon"
+    ],
+    "objects": [
+      "Little dragon"
+    ],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 287900
   },
   {
     "id": "event_013",
-    "timestampMs": 396000,
+    "timestampMs": 302900,
     "type": "character_action",
-    "description": "Sintel holds Scales on her lap, torn, then steels herself and leaves the hut with the map.",
-    "characters": ["Sintel", "Scales"],
-    "objects": ["Map"],
-    "importance": 0.75,
-    "spoilerBoundaryMs": 423000
+    "description": "A pale, winged dragon with spread wings hovers over the rooftops.",
+    "story": "The great dragon carries Scales off while Sintel reaches after him.",
+    "characters": [
+      "Large Dragon"
+    ],
+    "objects": [],
+    "importance": 0.85,
+    "spoilerBoundaryMs": 308900
   },
   {
     "id": "event_014",
-    "timestampMs": 450000,
+    "timestampMs": 314900,
     "type": "character_action",
-    "description": "Sintel treks through harsh mountains, climbing rocks and checking the map.",
-    "characters": ["Sintel"],
-    "objects": ["Map"],
-    "importance": 0.55,
-    "spoilerBoundaryMs": 501000
+    "description": "Alone among ruined rooftops, Sintel's expression hardens into a fierce, angry stare.",
+    "story": "Furious, Sintel sets out to find that dragon and bring Scales home.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 320900
   },
   {
     "id": "event_015",
-    "timestampMs": 495000,
+    "timestampMs": 338900,
     "type": "location_change",
-    "description": "Sintel finds a vast cave and climbs down into the dark.",
-    "characters": ["Sintel"],
+    "description": "A tiny figure crosses an enormous sand desert.",
+    "story": "Her search drags on across deserts, forests and mountains.",
+    "characters": [
+      "Sintel"
+    ],
     "objects": [],
-    "importance": 0.7,
-    "spoilerBoundaryMs": 501000
+    "importance": 0.4,
+    "spoilerBoundaryMs": 344900
   },
   {
     "id": "event_016",
-    "timestampMs": 522000,
-    "type": "clue",
-    "description": "Inside the cave a shadow-puppet vision of a baby dragon appears on the wall.",
-    "characters": ["Sintel"],
-    "objects": ["Shadow-puppet vision"],
-    "importance": 0.8,
-    "spoilerBoundaryMs": 690000
+    "timestampMs": 383900,
+    "type": "character_action",
+    "description": "In a snowy landscape a figure in a hooded coat lies in the snow with a long staff beside her.",
+    "story": "The journey wears her down: she collapses in the snow, where her story began.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [
+      "Staff"
+    ],
+    "importance": 0.5,
+    "spoilerBoundaryMs": 389900
   },
   {
     "id": "event_017",
-    "timestampMs": 555000,
+    "timestampMs": 434900,
     "type": "clue",
-    "description": "A Persian-style illustrated vision tells a story of a ship and a knight fighting a dragon.",
-    "characters": ["Sintel"],
-    "objects": ["Illustrated scroll vision"],
-    "importance": 0.7,
-    "spoilerBoundaryMs": 633000
+    "description": "Fingers rest on a round metal disc engraved with rings of symbols.",
+    "story": "An engraved disc shows a lone tree, the landmark she has to find.",
+    "characters": [],
+    "objects": [
+      "Engraved disc"
+    ],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 440900
   },
   {
     "id": "event_018",
-    "timestampMs": 588000,
-    "type": "reveal",
-    "description": "The adult dragon reveals itself in the cave — larger and older, with big eyes and horns.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "objects": [],
-    "importance": 0.85,
-    "spoilerBoundaryMs": 633000
+    "timestampMs": 440900,
+    "type": "clue",
+    "description": "A lone tree stands on a dark hillside, matching the tree engraved on the disc a moment earlier.",
+    "story": "She finds the lone tree from the disc. The dragon's lair is close.",
+    "characters": [],
+    "objects": [
+      "Tree emblem",
+      "Engraved disc"
+    ],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 446900
   },
   {
     "id": "event_019",
-    "timestampMs": 603000,
+    "timestampMs": 467900,
     "type": "character_action",
-    "description": "Sintel battles the dragon, striking its scaled hide with her glowing blade.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "objects": ["Glowing sword"],
-    "importance": 0.9,
-    "spoilerBoundaryMs": 690000
+    "description": "Peering from the edge of a crystal-lit cave, Sintel sees an enormous dragon lying far away.",
+    "story": "In a crystal cave, Sintel finally finds the dragon.",
+    "characters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
+    "objects": [],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 473900
   },
   {
     "id": "event_020",
-    "timestampMs": 624000,
-    "type": "reveal",
-    "description": "The dragon catches her blade in its jaws, stops, and looks at Sintel with recognition.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "objects": ["Glowing sword"],
-    "importance": 0.95,
-    "spoilerBoundaryMs": 690000
+    "timestampMs": 503900,
+    "type": "clue",
+    "description": "Sintel finds a young dragon curled asleep on a rock in the cave.",
+    "story": "Deeper in the cave, she comes upon a young dragon asleep on a rock.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 509900
   },
   {
     "id": "event_021",
-    "timestampMs": 640000,
-    "type": "reveal",
-    "description": "Sintel realizes the dragon is Scales grown up; her face fills with horror.",
-    "characters": ["Sintel", "Adult Dragon"],
+    "timestampMs": 509900,
+    "type": "character_action",
+    "description": "The enormous dragon blasts a jet of fire across the cave.",
+    "story": "The great dragon turns on her with a blast of fire.",
+    "characters": [
+      "Adult Dragon"
+    ],
     "objects": [],
-    "importance": 1.0,
-    "spoilerBoundaryMs": 690000
+    "importance": 0.8,
+    "spoilerBoundaryMs": 515900
   },
   {
     "id": "event_022",
-    "timestampMs": 654000,
+    "timestampMs": 575900,
     "type": "character_action",
-    "description": "Sintel cradles the dying dragon's head as it lies still.",
-    "characters": ["Sintel", "Adult Dragon"],
-    "objects": [],
-    "importance": 0.9,
-    "spoilerBoundaryMs": 690000
+    "description": "Sintel grips a dagger in both hands, her face tense.",
+    "story": "Thrown down again and again, Sintel grips her blade.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [
+      "Knife"
+    ],
+    "importance": 0.7,
+    "spoilerBoundaryMs": 581900
   },
   {
     "id": "event_023",
-    "timestampMs": 672000,
+    "timestampMs": 584900,
     "type": "character_action",
-    "description": "Sintel sobs over Scales' body, heartbroken, as the scene fades.",
-    "characters": ["Sintel", "Adult Dragon"],
+    "description": "The enormous dragon lies on the cave floor with red beneath it while Sintel stands a few paces away.",
+    "story": "After a brutal fight, Sintel brings the dragon down.",
+    "characters": [
+      "Sintel",
+      "Adult Dragon"
+    ],
     "objects": [],
-    "importance": 0.85,
-    "spoilerBoundaryMs": 690000
+    "importance": 0.8,
+    "spoilerBoundaryMs": 590900
+  },
+  {
+    "id": "event_024",
+    "timestampMs": 605900,
+    "type": "reveal",
+    "description": "Images from her long journey flash behind Sintel's red-tinted face: the fallen dragon is Scales, grown up.",
+    "story": "Then the truth hits her: the dragon she struck down is Scales, grown up.",
+    "characters": [
+      "Sintel",
+      "Scales",
+      "Adult Dragon"
+    ],
+    "objects": [],
+    "importance": 1.0,
+    "spoilerBoundaryMs": 622000
+  },
+  {
+    "id": "event_025",
+    "timestampMs": 608900,
+    "type": "relationship_change",
+    "description": "Sintel reaches out an open hand toward the fallen dragon.",
+    "story": "She reaches out to him, just as she did when he was small.",
+    "characters": [
+      "Sintel",
+      "Scales",
+      "Adult Dragon"
+    ],
+    "objects": [],
+    "importance": 0.8,
+    "spoilerBoundaryMs": 622000
+  },
+  {
+    "id": "event_026",
+    "timestampMs": 659900,
+    "type": "location_change",
+    "description": "Outside, Sintel sits alone on a cliff edge with her head bowed in a misty pink landscape.",
+    "story": "Shattered, Sintel sits alone outside the cave.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 665900
+  },
+  {
+    "id": "event_027",
+    "timestampMs": 671900,
+    "type": "character_action",
+    "description": "In close view Sintel looks pained, tree roots behind her.",
+    "story": "Grief and guilt overwhelm her.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 677900
+  },
+  {
+    "id": "event_028",
+    "timestampMs": 698900,
+    "type": "character_action",
+    "description": "A small tan winged creature lies on the ground near a tiny, distant Sintel, with white snowdrop flowers in the foreground.",
+    "story": "Sintel leaves alone. A small winged creature lies near her path.",
+    "characters": [
+      "Sintel"
+    ],
+    "objects": [
+      "Snowdrop flowers"
+    ],
+    "importance": 0.6,
+    "spoilerBoundaryMs": 704900
   }
 ]

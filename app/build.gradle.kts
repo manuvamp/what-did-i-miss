@@ -16,12 +16,12 @@ android {
 
         // Emulator/simulator host. For a physical Fire TV on the same LAN,
         // change to the dev machine's IP, e.g. "http://192.168.1.50:3000"
-        buildConfigField("String", "BACKEND_URL", "\"http://10.0.2.2:3000\"")
-        buildConfigField(
-            "String",
-            "STREAM_URL",
-            "\"http://10.0.2.2:3000/hls/sintel/index.m3u8\""
-        )
+        // Override with -PbackendUrl=http://<host>:<port> (e.g. when port 3000 is taken).
+        val backendUrl = (project.findProperty("backendUrl") as String?) ?: "http://10.0.2.2:3000"
+        buildConfigField("String", "BACKEND_URL", "\"$backendUrl\"")
+        // -PstreamPath=sintel-720 picks the 720p Main-profile copy the emulator's decoder can play.
+        val streamPath = (project.findProperty("streamPath") as String?) ?: "sintel"
+        buildConfigField("String", "STREAM_URL", "\"$backendUrl/hls/$streamPath/index.m3u8\"")
     }
 
     buildTypes {

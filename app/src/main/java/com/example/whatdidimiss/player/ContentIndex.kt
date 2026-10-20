@@ -69,13 +69,17 @@ class ContentIndex(context: Context) {
 
     /**
      * Deterministic offline recap used when the backend is unavailable.
-     * Scene summary + the last few dialogue lines, no future data.
+     * Summaries of scenes that finished inside the window + the last few dialogue
+     * lines, no future data. The scene still playing gets its title only: its
+     * summary covers parts the viewer hasn't seen yet (and can name a twist).
      */
     fun offlineRecap(startMs: Long, endMs: Long): String {
-        val scene = sceneAt(endMs)
+        val finished = scenes.filter { it.endMs > startMs && it.endMs <= endMs }.takeLast(2)
+        val current = sceneAt(endMs)
         val cues = cuesInWindow(startMs, endMs).takeLast(4)
         val parts = mutableListOf<String>()
-        if (scene != null) parts.add("In ${scene.title}: ${scene.summary}")
+        finished.forEach { parts.add("In ${it.title}: ${it.summary}") }
+        if (current != null) parts.add("Now: ${current.title}.")
         if (cues.isNotEmpty()) {
             parts.add(
                 "Recent lines: " + cues.joinToString(" ") {

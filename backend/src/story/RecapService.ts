@@ -5,6 +5,7 @@ import { SpoilerGuard } from '../validation/SpoilerGuard';
 import { getAIProvider } from '../llm/provider';
 import { DeterministicProvider } from '../llm/DeterministicProvider';
 import { StructuredContext } from '../llm/types';
+import { pickStoryBeats, storyLine } from './types';
 
 export class RecapService {
   private storyEngine = new StoryEngine();
@@ -38,6 +39,13 @@ export class RecapService {
       console.warn('[recap] AI provider failed, using deterministic fallback:', err);
       response = await this.fallback.generateRecap(structured);
     }
+
+    response.highlights = await this.storyEngine.selectHighlights({
+      contentId: request.contentId,
+      startMs: request.windowStartMs,
+      endMs: request.windowEndMs,
+      maxTimestampMs: request.currentPositionMs
+    });
 
     this.cache.set(request.contentId, request.windowStartMs, request.windowEndMs, response);
     return response;
@@ -84,7 +92,7 @@ export class RecapService {
           .filter(e => e.importance >= 0.7)
           .sort((a, b) => b.importance - a.importance)
           .slice(0, 3)
-          .map(e => e.description),
+          .map(storyLine),
         importantClue: inWindowClue
           ? { text: `${inWindowClue.title}: ${inWindowClue.description}`, confidence: 0.85 }
           : null,
@@ -103,14 +111,9 @@ export class RecapService {
   }
 
   private fallbackSummary(context: RetrievedContext, request: RecapRequest): string {
-    if (context.currentScene) {
-      const events = context.events
-        .sort((a, b) => a.timestampMs - b.timestampMs)
-        .map(e => e.description)
-        .slice(0, 3);
-      const joined = events.length > 0 ? ` ${events.join(' ')}` : '';
-      return `In ${context.currentScene.title}:${joined}`.replace('In The Basement:', 'In The Basement,');
-    }
+    const events = pickStoryBeats(context.events, request.windowStartMs, request.windowEndMs)
+      .map(storyLine);
+    if (events.length > 0) return events.join(' ');
     const minutes = Math.round((request.windowEndMs - request.windowStartMs) / 60000);
     return `You missed about ${minutes} minutes with no major indexed events.`;
   }

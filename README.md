@@ -2,7 +2,7 @@
 
 An Android TV / Fire TV app that answers one question while you watch: *what did I just miss?* Press one button on the remote and you get a short recap of the part you skipped or looked away from, with real frames from the film, and follow-up answers ("Why is that important?", "What clues do we know?"). It never tells you anything that happens after the point you have reached, and it only retells the story up to your exact playback position. The demo film is Sintel.
 
-Demo video: (link added at submission)
+Demo video: https://youtu.be/l0I2koamVWE
 
 **Status:** built and run on the Android TV emulator (API 33, x86). It has not been run on a physical Fire TV stick yet. The app is a standard Android TV app (Kotlin, Media3) and the steps to sideload it onto a real Fire TV are below, but those steps are untested on hardware.
 
